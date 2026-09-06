@@ -1020,7 +1020,7 @@ social-signatures-nethealth/
 ├── draft_manuscript.md                    # Local Markdown mirror synchronized with Google Drive
 ├── run_all.R                              # Master analytical reproduction pipeline
 ├── data/
-│   ├── raw/                               # Call logs, calendars, and survey microdata
+│   ├── raw/                               # Call logs, calendars, and survey microdata (.gitignored raw files)
 │   └── processed/                         # Harmonized analytical datasets
 ├── Plots/                                 # Publication-grade PNG figures (6.5 in wide, 300 DPI)
 ├── cache/                                 # Pre-compiled APA markdown tables

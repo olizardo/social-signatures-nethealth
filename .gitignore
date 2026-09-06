@@ -1,5 +1,8 @@
 # Data and intermediate outputs
 data/raw/outgoing_calls_2015_2017.csv.gz
+data/raw/alter_alter_edges.csv
+data/raw/basic_survey.csv
+data/raw/network_survey.csv
 data/raw/.comm_download_checkpoint
 data/raw/download.log
 
