@@ -981,8 +981,10 @@ project/
 ### 1. Overview & Document Identification
 - **Project Title:** The Persistent Architecture of Relational Investment: Social Signatures in the NetHealth Study
 - **Author:** Omar Lizardo (Department of Sociology, University of California, Los Angeles, NetHealth Research Collaboration)
-- **Google Doc URL:** https://docs.google.com/document/d/1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o
-- **Google Doc ID:** `1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o`
+- **Primary Publication Manuscript:** `manuscript.tex` (Compiled into publication-grade `manuscript.pdf`, 14 pages)
+- **Bibliography:** `references.bib` (BibTeX database integrated via `natbib`)
+- **Collaborative Google Doc URL:** https://docs.google.com/document/d/1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o
+- **Collaborative Google Doc ID:** `1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o`
 - **Data Sources:** NetHealth Study (University of Notre Dame, continuous smartphone sensing and longitudinal surveys, 2015–2017: https://sites.nd.edu/nethealth/).
 - **Primary Analytic Sample:** N = 491 egos, 498,237 outgoing iOS voice calls spanning June 30, 2015 through July 2, 2017, linked to 8 sociocentric network survey waves (N = 35,913 alter nominations) and longitudinal psychometric batteries (N = 722 egos).
 
@@ -1012,7 +1014,10 @@ The study investigates how individuals allocate relational bandwidth across pers
 ### 3. Directory Structure & Script Taxonomy
 ```
 social-signatures-nethealth/
-├── draft_manuscript.md                    # Active local markdown mirror
+├── manuscript.tex                         # Primary LaTeX manuscript (consistent math & booktabs tables)
+├── references.bib                         # BibTeX reference library
+├── manuscript.pdf                         # Compiled 14-page publication PDF
+├── draft_manuscript.md                    # Local Markdown mirror synchronized with Google Drive
 ├── run_all.R                              # Master analytical reproduction pipeline
 ├── data/
 │   ├── raw/                               # Call logs, calendars, and survey microdata
@@ -1073,6 +1078,20 @@ Every slide, figure, and empirical study from Matthew Chandler's 26-slide presen
 | **Slide 26** | Covariates to tease out (degree, clustering, turnover, activity, modularity) | Multilevel mixed-effects models & support tier linkages | `scripts/05_...` & `scripts/06_...`, Tables 4–6, Figures 5–7 |
 
 ### 6. Technical Lessons & Best Practices
+5. **LaTeX Migration & Mathematical Consistency Standards (Math-Heavy Papers)**:
+   - **Primary Typesetting in LaTeX**: For papers characterized by intensive mathematical formulations (information-theoretic metrics, power-law vs. exponential decay equations, Shannon entropy, dyadic turnover formulas, and multi-level mixed-effects models), LaTeX (`manuscript.tex` + `references.bib`) serves as the canonical authoring and submission medium, bypassing word-processor equation limitations.
+   - **Consistent Notation Hierarchy**: Maintain uniform mathematical symbols across all prose, equations, tables, and figure captions:
+     - Ego $i$, window $w$, alter rank $r$, alter identity $j$, time $t$.
+     - Interaction weights: $w_{i,j,w}$, total volume $W_{i,w} = \sum_{j=1}^{k_{i,w}} w_{i,j,w}$.
+     - Social signature proportion: $p_{i,w}(r) = w_{i,(r),w} / W_{i,w}$ where $\sum_{r=1}^{k_{i,w}} p_{i,w}(r) = 1$.
+     - Entropy and divergence: $H(P) = -\sum p_r \log_2(p_r)$, $\JSD(P \parallel Q) = H(M) - 0.5[H(P) + H(Q)]$.
+     - Divergence metrics: self-divergence $\dself(i)$, reference divergence $\dref(i)$.
+     - Turnover: $\Turnover_{i,w} = 1 - |A_{i,w} \cap A_{i,w+1}| / |A_{i,w} \cup A_{i,w+1}|$.
+     - Panel models: $\JSD_{it} = \beta_0 + \beta_1 \Turnover_{it} + \beta_2 \Delta \mathrm{Activity}_{it} + \mathbf{X}_{it}\boldsymbol{\gamma} + u_i + \epsilon_{it}$.
+   - **Table Design**: Use `booktabs` (`\toprule`, `\midrule`, `\bottomrule`) with `\resizebox{\textwidth}{!}{...}` on wide multi-column tables to ensure seamless margin compliance.
+   - **Zero-Warning Compilation Pipeline**: Always compile via `pdflatex -interaction=nonstopmode manuscript.tex && bibtex manuscript && pdflatex -interaction=nonstopmode manuscript.tex && pdflatex -interaction=nonstopmode manuscript.tex`.
+
+
 1. **Translating Math to Document Text (Bypassing Cambria Math & oMath Issues)**:
    - When authors request standard manuscript typography (e.g., Alegreya Sans 11pt) across the entire paper, never use LaTeX math delimiters in markdown, as Pandoc converts them into Word `<m:oMath>` blocks which default to Cambria Math and fail Google Docs import conversion.
    - Write equations in clean Unicode text with semantic italics and superscripts/subscripts.
