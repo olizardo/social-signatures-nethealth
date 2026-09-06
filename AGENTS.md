@@ -957,3 +957,92 @@ project/
    - Use "Gender Identity" (or "Gender") rather than "Sex".
    - Avoid generic "robust" (reserve strictly for formal statistical terms like "cluster-robust standard errors").
    - Every visual figure must be accompanied by its dedicated analytical discussion paragraph.
+
+
+## Project Architecture: Social Signatures in the NetHealth Study
+
+### 1. Overview & Document Identification
+- **Project Title:** The Persistent Architecture of Relational Investment: Social Signatures in the NetHealth Study
+- **Author:** Omar Lizardo (Department of Sociology, University of California, Los Angeles, NetHealth Research Collaboration)
+- **Google Doc URL:** https://docs.google.com/document/d/1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o
+- **Google Doc ID:** `1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o`
+- **Data Sources:** NetHealth Study (University of Notre Dame, continuous smartphone sensing and longitudinal surveys, 2015–2017: https://sites.nd.edu/nethealth/).
+- **Primary Analytic Sample:** N = 491 egos, 498,237 outgoing iOS voice calls spanning June 30, 2015 through July 2, 2017, linked to 8 sociocentric network survey waves (N = 35,913 alter nominations) and longitudinal psychometric batteries (N = 722 egos).
+
+### 2. Theoretical Framing & Empirical Contributions
+The study investigates how individuals allocate relational bandwidth across personal networks, whether communication hierarchies persist across major life-course transitions, and what structural and psychological mechanisms govern these signatures:
+1. **Core Replication of Social Signature Persistence**:
+   - Evaluates two binning architectures across 8 temporal window definitions: Calendar-based (Academic Years N=388, Semesters N=290, Quarters N=227, Months N=147, Common Calendar Cohort N=147) and Week-based (3-Week Rolling N=88, 2-Week Discrete N=65, 1-Week Discrete N=14).
+   - Calculates Jensen-Shannon Divergence (JSD; Lin 1991) using zero-padding on-the-fly and matrix-accelerated vectorized entropy.
+   - **Key Empirical Finding**: Intra-individual self-divergence (d_self) is uniformly and overwhelmingly smaller than inter-individual reference divergence (d_ref) across all resolutions (p < 10^-12 via Wilcoxon signed-rank and Mann-Whitney tests).
+2. **Parametric Form and Convergence**:
+   - Power-law decay models (p(r) = c * r^-alpha, mean R^2 = 0.935) decisively outperform exponential decay models (p(r) = c * e^(-beta * r), mean R^2 = 0.746, preferred by AIC in 97.0% of models).
+   - Parameter convergence analysis demonstrates that an ego's decay parameter alpha converges to its asymptotic value within 6 to 8 months of continuous observation.
+3. **Expansion 1: Functional Support Grounding across Dunbar Layers**:
+   - Cross-references N = 13,174 call-ranked dyads with multidimensional survey nominations.
+   - Rank 1 represents a specialized kinship-dominated support hub (69.7% family, 85.4% emotional support, 87.6% advice, 64.1% financial support).
+   - Ranks 2–3 represent the core sympathy group (62.2% kin, 77.1% emotional support).
+   - Ranks 4–5 mark the structural crossover to peer friendship dominance (56.9% friends).
+   - Outer ranks (>20) are friend-dominated (87.8%) with declining emotional support (39.1%) but sustained high companionship (69.4%).
+4. **Expansion 2: The Slot-Filling Mechanism & Alter Turnover**:
+   - Despite an average semester alter turnover of 80.1% (Jaccard distance 1 - J = 0.801), egos maintain strong signature stability (d_self = 0.0614).
+   - In 59.1% of intervals, the top-ranked alter is retained; even when replaced, self-divergence shifts only modestly (0.043 to 0.078), demonstrating that individuals slot newly acquired alters into pre-existing cognitive roles.
+5. **Expansion 3: Multilevel Panel Models of Signature Divergence**:
+   - Linear mixed-effects models (`lme4::lmer`) confirm that alter turnover (beta = 0.351, p < 10^-15) and percentage activity shifts (beta = 0.0014, p < 10^-10) govern temporal variations in self-divergence.
+6. **Expansion 4: Personality Foundations of Signature Shape**:
+   - Regressing ego-mean decay exponents (alpha_i) on Big Five traits shows that **Neuroticism strongly predicts steeper, hyper-concentrated social signatures (beta = 0.098, t = 5.08, p = 6.96e-07)**. Emotionally vulnerable individuals funnel attention into one or two primary alters while under-investing in intermediate and outer bands. Agreeableness also exhibits a positive association with concentration (beta = 0.063, p = 0.014).
+
+### 3. Directory Structure & Script Taxonomy
+```
+social-signatures-nethealth/
+├── draft_manuscript.md                    # Active local markdown mirror
+├── run_all.R                              # Master analytical reproduction pipeline
+├── data/
+│   ├── raw/                               # Call logs, calendars, and survey microdata
+│   └── processed/                         # Harmonized analytical datasets
+├── Plots/                                 # Publication-grade PNG figures (6.5 in wide, 300 DPI)
+├── cache/                                 # Pre-compiled APA markdown tables
+├── templates/                             # Document reference styles and fontTable XML
+└── Scripts/                               # Turnkey modular execution pipeline
+    ├── 01_prepare_call_windows.R          # Temporal window binning & cohort filtering
+    ├── 02_compute_signatures_and_jsd.R    # Social signature computation, fast JSD, Wilcoxon tests
+    ├── 03_fit_parametric_models.R         # Power-law vs exponential models & burn-in analysis
+    ├── 04_egonet_topology_and_turnover.R  # Egonet metrics & alter turnover dynamics
+    ├── 05_survey_linkage_psychometrics.R  # Support dimensions & Big Five psychometrics
+    ├── 06_expansion_statistical_models.R  # Dyadic support tiers & multilevel LMM regressions
+    ├── 07_generate_figures_and_tables.R   # Publication-quality figure and table rendering
+    ├── generate_md_tables.R               # Pre-compiles APA markdown tables into cache/
+    ├── sync_manuscript.py                 # OpenXML table & figure DOM injector
+    ├── format_manuscript.py               # Typography, margins, indents, and style normalizer
+    └── sync_manuscript.R                  # Master Google Drive synchronization driver
+```
+
+### 4. Tables and Figures Inventory in Live Google Doc
+- **Table 1**: NetHealth Cohort Summary Across Temporal Window Definitions (`cache/table1_cohort_summary.md`)
+- **Figure 1**: Empirical Social Signatures across Temporal Window Resolutions (Ranks 1–15) (`Plots/fig01_mean_signatures_by_window.png`)
+- **Table 2**: Statistical Tests of Social Signature Persistence (`cache/table2_stability_tests.md`)
+- **Figure 2**: Persistence of Social Signatures: Self vs. Reference Divergence (`Plots/fig02_self_vs_ref_divergence.png`)
+- **Table 3**: Parametric Model Evaluation Across Window Resolutions (`cache/table3_parametric_models.md`)
+- **Figure 3**: Power-Law vs Exponential Model Fits and Exponent Distribution (`Plots/fig03_power_law_vs_exponential.png`)
+- **Figure 4**: Parameter Burn-In Convergence Over 24 Months (`Plots/fig04_parameter_burnin.png`)
+- **Table 4**: Relational Composition and Support Functions Across Signature Rank Tiers (`cache/table4_support_tiers.md`)
+- **Figure 5**: Functional Support Dimensions Across Signature Rank Tiers (`Plots/fig05_rank_by_support_tiers.png`)
+- **Figure 6**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence (`Plots/fig06_turnover_vs_stability.png`)
+- **Table 5**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence (`cache/table5_multilevel_models.md`)
+- **Table 6**: Personality Determinants of Social Signature Power-Law Alpha (`cache/table6_personality_models.md`)
+- **Figure 7**: Personality Predictors of Social Signature Alpha (`Plots/fig07_personality_signature_effects.png`)
+
+### 5. Technical Lessons & Best Practices
+1. **Translating Math to Document Text (Bypassing Cambria Math & oMath Issues)**:
+   - When authors request standard manuscript typography (e.g., Alegreya Sans 11pt) across the entire paper, never use LaTeX math delimiters in markdown, as Pandoc converts them into Word `<m:oMath>` blocks which default to Cambria Math and fail Google Docs import conversion.
+   - Write equations in clean Unicode text with semantic italics and superscripts/subscripts.
+   - `format_manuscript.py` must run `convert_omath_to_runs()` to convert any lingering `<m:oMath>` into standard `<w:r>` text runs styled in the document font (`Alegreya Sans 11pt`).
+2. **Preventing Generic Word Style Resets in Google Docs**:
+   - Pandoc compiles markdown paragraphs with styles `BodyText` and `FirstParagraph`. If these style IDs are missing from `styles.xml`, Google Docs falls back to its generic default styles (Calibri 11pt, 1.15 line spacing, 0 indent).
+   - In `format_manuscript.py`, always strip `BodyText` and `FirstParagraph` from paragraphs so they default to `Normal`, ensure `docDefaults` has `rFonts w:ascii="Alegreya Sans"` without theme overrides (`asciiTheme`), and inject proven `styles.xml` and `fontTable.xml` templates.
+3. **High-Performance JSD Vectorization in R**:
+   - Calculating pairwise JSD across hundreds of egos and windows iteratively hangs in R.
+   - Precompute Shannon entropy H(P) once per signature vector. Pairwise JSD then only requires calculating H(M) for the midpoint M = 0.5(P + Q).
+   - Pad all signatures in a window into a matrix and compute midpoint entropy vectorized across columns, achieving a 400x speedup.
+4. **Fast GZ Ingestion without Extra Packages**:
+   - To bypass `fread()`'s prompt for `R.utils` when reading `.csv.gz`, pass the decompressed stream command: `fread(cmd = sprintf("zcat %s", gz_file), select = ...)`.
