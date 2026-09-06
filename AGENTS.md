@@ -309,6 +309,23 @@ When updating manuscripts in Google Docs / Word via OpenXML injection, scripts m
    - **Table & Figure Notes (`Note: ...`)**: Style strictly as `Heading4` (footnote size 11pt/10pt) with zero first-line indent (`<w:ind w:left="0" w:right="0" w:firstLine="0" w:hanging="0"/>`), bold `Note:` prefix label, and tight vertical spacing (`before="60" after="120"`).
    - **Figure Drawings (`<w:drawing>`)**: Zero first-line indent, centered alignment (`jc="center"`), tight spacing before/after.
 
+6. **Math Formatting & Normal Text Translation Standards (CRITICAL)**:
+   - **Zero Raw LaTeX Math Delimiters in Markdown**: Never use raw TeX math delimiters (`$...$` or `$$...$$`) in markdown drafts intended for Google Docs synchronization. When Pandoc encounters TeX math, it emits Word `<m:oMath>` / `<m:oMathPara>` blocks that hardcode Cambria Math (serif) fonts, trigger XML parsing warnings, and frequently cause Google Docs to fail conversion (rendering raw TeX syntax warnings).
+   - **Unicode & Semantic Text Runs**: Write all mathematical expressions using clean Unicode characters with standard semantic italics and superscripts/subscripts (e.g., *p~i,w~*(*r*) = *w~ij(r),w~* / *W~i,w~*, *d*~self~, *d*~ref~, *α*, *β*, *p* < 10^-12^, *R*^2^ = 0.935, *β* = 0.098).
+   - **Automated `<m:oMath>` to `<w:r>` Conversion**: Formatting scripts (`format_manuscript.py`) must implement `convert_omath_to_runs()` to traverse the XML DOM, extract any remaining math text, set `rFonts` explicitly to the document font (e.g., `Alegreya Sans`), set `sz` to `22` (11pt), italicize single-letter variables (*N*, *p*, *r*, *k*, *J*, *d*), and replace `<m:oMath>` with standard `<w:r>` runs.
+
+7. **Preventing Generic Word Style Resets in Google Docs**:
+   - **The Pandoc Style Trap**: Pandoc compiles markdown paragraphs with styles `BodyText` and `FirstParagraph`. If these style IDs are missing from `styles.xml`, or if `w:rFonts` contains theme attributes (`asciiTheme="minorHAnsi"`), Google Docs cannot resolve the font hierarchy and resets the entire document to its internal generic default (Calibri 11pt, 1.15 line spacing, 0 indent).
+   - **Stripping Alien Style Identifiers**: Formatting scripts must automatically strip `<w:pStyle w:val="BodyText"/>` and `<w:pStyle w:val="FirstParagraph"/>` from body paragraphs so they cleanly default to `Normal`.
+   - **Purging Theme Attributes**: Delete `asciiTheme`, `hAnsiTheme`, `cstheme`, and `eastAsiaTheme` from `w:docDefaults` and all run definitions, forcing Word and Google Docs to read explicit font definitions (`w:ascii="Alegreya Sans"`).
+   - **Injecting Proven Template Styles**: Always package verified reference templates (`templates/styles.xml` and `templates/fontTable.xml`) into the `.docx` archive during formatting passes.
+
+8. **Standalone Empirical Paper Framing (Zero "Slide Extension" Jargon)**:
+   - When reviving or expanding projects from preliminary presentation slide decks (e.g., conference talks or lab presentations), **never** write the manuscript as a mere "replication of slides" or an "extension of preliminary presentations."
+   - Always frame the manuscript from the ground up as an authoritative, standalone empirical paper with its own conceptual narrative, research questions, and theoretical stakes.
+   - Ground the introduction in foundational literature (e.g., evolutionary cognitive constraints, Dunbar's social brain, slot-filling hypothesis, tie strength theory).
+   - Preliminary slide presentations may be cited as prior work in the literature review or footnotes, but the text must speak as an independent empirical study.
+
 ### 7. Turnkey Setup & Workflow Architecture for Any Project
 To implement this synchronization workflow in any project, establish the following standardized structure:
 
@@ -1032,7 +1049,30 @@ social-signatures-nethealth/
 - **Table 6**: Personality Determinants of Social Signature Power-Law Alpha (`cache/table6_personality_models.md`)
 - **Figure 7**: Personality Predictors of Social Signature Alpha (`Plots/fig07_personality_signature_effects.png`)
 
-### 5. Technical Lessons & Best Practices
+### 5. Exhaustive Replication Audit Against Social Signatures.pptx
+Every slide, figure, and empirical study from Matthew Chandler's 26-slide presentation (May 7, 2019) has been comprehensively replicated and extended:
+
+| Slide(s) in PPTX | Topic / Analysis in Slide Deck | Implementation in This Project | Location in Paper & Pipeline |
+|:---|:---|:---|:---|
+| **Slides 2 & 12** | Social signature formulation & generalized n-ary JSD (Lin 1991) | Matrix-accelerated zero-padded pairwise JSD and multi-window generalized entropy | `scripts/02_compute_signatures_and_jsd.R`, Section 2.3 |
+| **Slide 6 & 13** | 7 Window binning definitions (Academic Years, Semesters, Quarters, Months, 3-Wk Moving, 2-Wk Discrete, 1-Wk Discrete) | Complete calendar and weekly binning algorithms with >=2 alters & >10 calls criteria | `scripts/01_prepare_call_windows.R`, Table 1 |
+| **Slide 7** | Alter variation & Jaccard turnover by year (n = 411) | Year-over-year alter degree correlations and Jaccard turnover distributions | `scripts/04_egonet_topology_and_turnover.R`, Section 4.2 |
+| **Slide 8** | Scatterplot matrix of alter counts across 8 quarters (n = 229) | Quarter-by-quarter alter degree correlation matrix | `scripts/01_...` & `scripts/04_...` |
+| **Slides 9–11** | Sample individual social signatures across Semesters, Quarters, and 3-Week Moving | Individual ego curves and aggregate mean signature profiles | `scripts/02_...`, Figure 1 |
+| **Slide 14** | Pairwise Mean Self-Divergence vs. Combined Generalized JSD across narrow windows (n = 70) | Comparative evaluation of pairwise consecutive JSD vs. multi-window generalized JSD | `scripts/02_...`, Section 2.3 |
+| **Slide 15** | Reference divergence formulation (all-pairs vs. by-ego averaged) | Both reference divergence calculations implemented across all window resolutions | `scripts/02_...`, Table 2 |
+| **Slide 16 & 17** | Self vs. Reference divergence and turnover scatterplots; correlation distributions | Dyadic Jaccard turnover vs. JSD regressions and stability distributions | `scripts/04_...`, Figure 6 |
+| **Slide 18** | Self vs. Reference divergence distributions (No Limit vs. Top 20) with Wilcoxon / Mann-Whitney tests | Formal non-parametric location tests confirming persistence (p < 10^-12) | `scripts/02_...`, Table 2, Figure 2 |
+| **Slide 19** | Log-log social signatures by semester showing linear power-law decay | Individual and aggregate log-log decay curves | `scripts/03_fit_parametric_models.R`, Figure 3 |
+| **Slide 20** | Power-law models f(x) = beta * x^-alpha (p < 0.00001 for all models) | NLS and log-linear estimation across all ego-windows (97.7% significant at p < 0.0001) | `scripts/03_...`, Table 3 |
+| **Slide 21** | Distributions of power-law intercept beta and slope -alpha | Parameter distribution density modeling across timescales | `scripts/03_...`, Figure 3 |
+| **Slide 22** | Individual differences in parameters by year (Delta beta, Delta alpha) | Year-over-year individual parameter stability tracking | `scripts/03_...`, Section 3.3 |
+| **Slide 23** | Longitudinal parameter trajectories across Semesters, Quarters, Months | Longitudinal panel modeling of ego-level decay exponents | `scripts/03_...` & `scripts/06_...` |
+| **Slide 24** | Power-law vs. Exponential models (f(x) = beta * exp(-alpha * x)) | Direct goodness-of-fit comparison (AIC, BIC, R^2; power-law preferred in 97.0%) | `scripts/03_...`, Table 3, Figure 3 |
+| **Slide 25** | Parameter burn-in: How long before an ego's model is stable? | Cumulative 2-to-24 month parameter convergence tracking (stabilizes at 6-8 months) | `scripts/03_...`, Figure 4 |
+| **Slide 26** | Covariates to tease out (degree, clustering, turnover, activity, modularity) | Multilevel mixed-effects models & support tier linkages | `scripts/05_...` & `scripts/06_...`, Tables 4–6, Figures 5–7 |
+
+### 6. Technical Lessons & Best Practices
 1. **Translating Math to Document Text (Bypassing Cambria Math & oMath Issues)**:
    - When authors request standard manuscript typography (e.g., Alegreya Sans 11pt) across the entire paper, never use LaTeX math delimiters in markdown, as Pandoc converts them into Word `<m:oMath>` blocks which default to Cambria Math and fail Google Docs import conversion.
    - Write equations in clean Unicode text with semantic italics and superscripts/subscripts.
