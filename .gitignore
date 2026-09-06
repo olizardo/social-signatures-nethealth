@@ -1,0 +1,22 @@
+# Data and intermediate outputs
+data/raw/outgoing_calls_2015_2017.csv.gz
+data/raw/.comm_download_checkpoint
+data/raw/download.log
+
+# Drive sync intermediate files (AGENTS.md Section 6)
+draft_*.docx
+draft_*.txt
+draft.docx
+draft_updated.docx
+draft_live.docx
+replacements.json
+*.tmp
+.tmp/
+
+# R/renv library and caches
+.Rhistory
+.RData
+.Rproj.user
+renv/library/
+renv/staging/
+__pycache__/
