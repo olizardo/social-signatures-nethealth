@@ -1,0 +1,11 @@
+{
+  "permission": {
+    "bash": {
+      "python3 *": "allow"
+    },
+    "edit": {
+      "*.bib": "allow",
+      "*.tex": "allow"
+    }
+  }
+}
