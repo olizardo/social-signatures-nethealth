@@ -49,7 +49,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent How do individuals allocate cognitive, temporal, and emotional bandwidth across their personal networks? Using high-resolution digital call records paired with eight waves of longitudinal network and psychometric surveys from the NetHealth study ($N = 491$ egos, 498,237 communication events), this paper investigates the structure, temporal stability, and psychological foundations of \textbf{social signatures}---the ranked proportion of communication effort allocated across alters within discrete temporal windows. We show that the core signature persistence hypothesis holds across multiple timescales (academic years, semesters, quarters, months, and rolling weekly windows): intra-individual self-divergence ($\dself$) is uniformly and overwhelmingly smaller than inter-individual reference divergence ($\dref$, $p < 10^{-12}$ across all resolutions). Parametric evaluations confirm that power-law models ($p(r) \sim r^{-\alpha}$, mean $R^2 = 0.935$) fit empirical signatures significantly better than exponential decay models, with ego-specific decay exponents ($\alpha$) converging to an asymptotic value within 6 to 8 months of continuous observation. Going beyond previous work, we introduce three substantive theoretical expansions: (1) \textbf{Functional Support Grounding}: Linking communication ranks to multi-dimensional survey nominations ($N = 13,174$ dyads), we reveal that the steep drop in communication effort corresponds to sharp qualitative transitions from family-dominated instrumental and emotional support (Rank 1: 69.7\% kin, 85.4\% emotional support, 87.6\% advice) to friend-dominated companionship at lower ranks; (2) \textbf{The Slot-Filling Dynamic}: We show that high signature stability persists despite massive alter turnover (averaging 80.1\% across semesters), providing direct evidence that college students replenish relational slots with new alters rather than restructuring their overall allocation profile; and (3) \textbf{Psychological Determinants}: Using longitudinal mixed-effects and cross-sectional models, we show that Neuroticism strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, p < 10^{-6}$), revealing that emotional vulnerability drives disproportionate reliance on core ties.
+\noindent How do individuals allocate cognitive, temporal, and emotional bandwidth across personal networks? Using passive smartphone logs and eight waves of longitudinal sociocentric surveys from the NetHealth study ($N = 491$ egos, 498,237 calls), this paper examines the structure, temporal stability, and psychological foundations of social signatures---the ranked distribution of communication effort directed to alters within discrete observation windows. We show that signature persistence holds across multiple timescales (academic years, semesters, quarters, months, and weekly windows): intra-individual self-divergence is consistently smaller than inter-individual reference divergence ($p < 10^{-12}$). Power-law models ($p(r) \sim r^{-\alpha}$, mean $R^2 = 0.935$) outperform exponential decay models, with decay exponents $\alpha$ stabilizing within 6 to 8 months of continuous observation. We advance four substantive extensions: (1) \textbf{Functional Support Grounding}: Linking communication ranks to survey nominations ($N = 13,174$ dyads) reveals that the steep drop in communication effort tracks qualitative transitions from kinship-dominated instrumental and emotional support (Rank 1: 69.7\% kin, 85.4\% emotional support, 87.6\% advice) to friend-dominated companionship at lower ranks; (2) \textbf{The Slot-Filling Dynamic}: Signature stability persists despite substantial semester alter turnover (averaging 80.1\%), showing that individuals slot new alters into pre-existing relational positions rather than restructuring their overall profile; (3) \textbf{Structural Embedding}: Multilevel panel models indicate that alter turnover and volume shifts drive temporal variation in self-divergence, while egonet clustering has negligible effect; and (4) \textbf{Psychological Foundations}: Neuroticism strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, p < 10^{-6}$), showing that emotional vulnerability fosters disproportionate reliance on core ties.
 \end{abstract}
 
 \vspace{1em}
@@ -61,7 +61,7 @@
 
 A defining puzzle of human sociality is the tension between relational fluidity and structural constraint. Across the life course, individuals move through dynamic, evolving social worlds: entering new institutions, forming romantic partnerships, making new friends, and allowing older ties to lapse. Yet despite the continual turnover of interaction partners, personal communication behavior does not diffuse randomly across acquaintances, nor does it restructure arbitrarily when network composition changes. Instead, human relational investment is bounded by deep-seated cognitive and temporal constraints on sociality \citep{dunbar1992neocortex,dunbar1998social,miritello2013time}. While individuals can recognize hundreds of faces and maintain casual awareness of extensive social circles, active personal networks are structured into concentric, hierarchical layers: an intimate support clique of 1 to 2 confidants, a sympathy group of approximately 5 close ties, an affinity group of 12 to 15 regular contacts, and expanding outer bands of declining emotional intensity and contact frequency \citep{dunbar2018anatomy,roberts2009exploring,sutcliffe2012relationships}.
 
-In a seminal contribution, \citet{saramaeki2014persistence} operationalized this relational hierarchy through the concept of the \textbf{social signature}: the probability distribution of communication effort that an individual (ego) directs toward their contacts (alters), ordered from most-frequently to least-frequently contacted within a given observation window. Tracking young adults making the transition from high school to university using mobile call detail records, \citet{saramaeki2014persistence} uncovered two foundational regularities: first, social signatures exhibit marked inter-individual variation, ranging from steep, hyper-concentrated profiles focused on a single alter to broad, egalitarian allocations; and second, an individual's social signature displays remarkable intra-individual persistence over time. Crucially, this persistence held even when personal networks underwent massive turnover, prompting \citet{saramaeki2014persistence} to hypothesize a ``slot-filling'' dynamic in which individuals maintain stable cognitive slots and replenish them with new alters as old relationships fade.
+In a seminal contribution, \citet{saramaeki2014persistence} operationalized this relational hierarchy through the concept of the \textbf{social signature}: the probability distribution of communication effort that an individual (ego) directs toward their contacts (alters), ordered from most-frequently to least-frequently contacted within a given observation window. Tracking young adults making the transition from high school to university using mobile call detail records, \citet{saramaeki2014persistence} uncovered two foundational regularities: first, social signatures exhibit marked inter-individual variation, ranging from steep, hyper-concentrated profiles focused on a single alter to broad, egalitarian allocations; and second, an individual's social signature displays remarkable intra-individual persistence over time. Crucially, this persistence held even when personal networks underwent substantial turnover, prompting \citet{saramaeki2014persistence} to hypothesize a ``slot-filling'' dynamic in which individuals maintain stable cognitive slots and replenish them with new alters as old relationships fade.
 
 Over the past decade, a rich multidisciplinary literature has expanded upon Saram{\"a}ki and colleagues' initial formulation. Scholars have investigated social signatures across diverse communication channels, including text messaging \citep{heydari2018multichannel}, online collaborative platforms and social networking sites \citep{li2018social,koltsova2021social}, and in-person sensor networks \citep{li2022evidence,adel2026preferentiality}. Physicists and network scientists have developed continuous resource allocation models \citep{tamarit2022beyond} and generative micro-foundations rooted in the competition between cumulative advantage and random exploration \citep{iniguez2023universal}, while methodological work has sought to disentangle genuine tie strength heterogeneity from network size stability \citep{heydari2024disentangling,heydari2024dynamic}. Recent inquiries have even leveraged signature distinctiveness as a behavioral biometric capable of re-identifying individuals in anonymized data \citep{jia2025multidimensional}.
 
@@ -71,11 +71,11 @@ This study addresses these fundamental questions by analyzing the \textbf{NetHea
 
 The remainder of this paper is organized as follows. Section~2 reviews the intellectual lineage and recent advances of the social signatures literature, identifying five critical theoretical and empirical frontiers addressed by our study. Section~3 details the NetHealth dataset, temporal window binning architectures, and mathematical formulations of social signatures and divergence metrics. Section~4 presents the empirical baseline results on persistence, power-law scaling, and parameter convergence. Section~5 develops four substantive expansions: functional support grounding, the slot-filling mechanism, multilevel panel models of signature divergence, and personality determinants of signature shape. Section~6 discusses the theoretical implications of our findings for evolutionary anthropology, sociology, and computational social science.
 
-\section{The Social Signatures Framework: Lineage, Advances, and Open Frontiers}
+\section{Prior Work and Open Frontiers}
 
 The concept of the social signature sits at the intersection of evolutionary anthropology, structural sociology, and computational network science. In this section, we review the evolution of this framework over the past decade, synthesizing findings from mobile telecommunications, online interaction platforms, generative physical models, and methodological refinements. We then articulate five foundational frontiers left open in the prior literature that the NetHealth study is uniquely designed to address.
 
-\subsection{Foundational Origins: Cognitive Constraints and Persistent Skewness}
+\subsection{Cognitive Constraints and Persistence}
 
 The theoretical foundation of the social signatures framework is rooted in the social brain hypothesis \citep{dunbar1992neocortex,dunbar1998social,dunbar2018anatomy}, which posits that the evolution of large primate brains was driven by the cognitive demands of managing complex social relationships. In humans, neocortical processing capacity imposes an upper constraint on the number of personal ties an individual can actively maintain, a ceiling widely recognized as Dunbar's number ($\approx 150$). Within this outer boundary, egocentric personal networks are organized into a nested hierarchy of concentric layers or circles, where group sizes scale by a factor of approximately 3: an intimate support clique of 1 to 2 primary partners, a sympathy group of roughly 5 close ties, an affinity group of 12 to 15 core friends, and broader layers of 50 and 150 acquaintances \citep{roberts2009exploring,sutcliffe2012relationships}.
 
@@ -98,11 +98,11 @@ Tracking 24 high school graduates transitioning into university over 18 months, 
     \item \textbf{Marked Inter-Individual Diversity}: Individuals possess distinct communication profiles. While all signatures exhibit heavy-tailed skewness, some egos display hyper-concentrated distributions directing over 40\% of their calls to Rank 1, whereas others distribute contact effort much more evenly across top alters.
     \item \textbf{Intra-Individual Persistence Across Turmoil}: An individual's signature is remarkably stable over time. The self-divergence between an ego's signatures across consecutive observation periods ($\dself$) was significantly smaller than the reference divergence between random pairs of individuals ($\dref$).
 \end{enumerate}
-Most remarkably, this signature persistence endured despite massive turnover in network membership: between high school and university, participants replaced between 60\% and 80\% of their active contacts (Jaccard distance $1 - J \approx 0.60$--$0.80$). This striking paradox led \citet{saramaeki2014persistence} to hypothesize the existence of a ``slot-filling'' mechanism: individuals do not adapt their overall allocation profile to the identities of their current alters; rather, they maintain pre-existing relational slots and dynamically slot newly acquired alters into vacated positions.
+Most remarkably, this signature persistence endured despite high turnover in network membership: between high school and university, participants replaced between 60\% and 80\% of their active contacts (Jaccard distance $1 - J \approx 0.60$--$0.80$). This striking paradox led \citet{saramaeki2014persistence} to hypothesize the existence of a ``slot-filling'' mechanism: individuals do not adapt their overall allocation profile to the identities of their current alters; rather, they maintain pre-existing relational slots and dynamically slot newly acquired alters into vacated positions.
 
-\subsection{The Multichannel and Multimodal Frontier: Cross-Platform Consistency}
+\subsection{Multichannel Communication}
 
-Following Saram{\"a}ki and colleagues' initial findings, a major research thrust examined whether social signatures are idiosyncratic to traditional voice telephony or reflect a universal organizing principle across modern communication channels. 
+Following Saram{\"a}ki and colleagues' initial findings, a major research thrust examined whether social signatures are idiosyncratic to traditional voice telephony or reflect a universal organizing principle across contemporary digital communication channels. 
 
 First examining commercial mobile telecommunications at large scale, \citet{heydari2018multichannel} analyzed voice call and Short Message Service (SMS) records from a European carrier spanning more than half a million egos. They confirmed that the signature persistence observed by \citet{saramaeki2014persistence} in a small student cohort held across nationwide populations. Crucially, \citet{heydari2018multichannel} showed that text messaging signatures also exhibited intra-individual persistence over time ($\dself < \dref$). Furthermore, when comparing call and SMS signatures for the same ego, they found a moderate structural resemblance, even though the specific alters contacted via voice calls and text messages showed minimal overlap. 
 
@@ -112,13 +112,13 @@ In a comprehensive multi-modal study, \citet{li2022evidence} analyzed high-resol
 
 More recently, \citet{liu2024uncovering} evaluated multi-channel mobile communications using entropy evaluation methods and null models. Their analyses revealed an empirical U-shaped trade-off between calling and texting as an individual's total contact portfolio expands, alongside clear vitality ceilings: egos maintained active communication vitality up to approximately 10 contacts in voice calling, 100 in text messaging, and 20 in hybrid communication. Together, these studies confirm that social signatures represent an enduring, cross-modal behavioral pattern, but also indicate that different communication media capture distinct slices of an individual's total relational life.
 
-\subsection{Theoretical Formalisms and Universal Scaling Dynamics}
+\subsection{Theoretical Models and Scaling}
 
 Parallel to empirical extensions across platforms, theorists and statistical physicists sought to identify the mathematical laws and generative mechanisms that govern social signatures. A prominent debate concerned whether personal networks are best understood as discrete, stepwise layers (the classical Dunbar circles) or as smooth, continuous distributions.
 
 Bridging this divide, \citet{tamarit2022beyond} formulated a statistical-mechanical model of resource allocation based on the principle of maximum entropy. Rather than categorizing ties into a small number of arbitrary discrete bins where the cost of interaction is assumed to be uniform within each layer, Tamarit and colleagues treated relational maintenance costs as continuous variables. Their continuum model showed that discrete Dunbar circles and continuous social signatures are mathematically unified manifestations of a single resource allocation process under finite cognitive capacity. Under this formulation, they predicted and empirically identified a universal scaling parameter, $\eta \approx 6$, representing the ratio of relationship costs between adjacent levels. Evaluating datasets spanning mobile phone logs, face-to-face contacts, and Facebook interactions, \citet{tamarit2022beyond} showed that the distribution of estimated parameters across individuals clustered tightly around this universal value.
 
-Simultaneously, \citet{iniguez2023universal} tackled the generative micro-foundations of tie strength heterogeneity. Analyzing personal networks across millions of individuals in four massive datasets (mobile calls, text messages, Twitter mentions, and Wikipedia talk pages), they showed universality in the distributions of tie strengths and their individual-level variations. To explain this universality, \citet{iniguez2023universal} introduced a microscopic model of egocentric network evolution driven by a dynamic competition between two fundamental behavioral mechanisms:
+Simultaneously, \citet{iniguez2023universal} tackled the generative micro-foundations of tie strength heterogeneity. Analyzing personal networks across millions of individuals in four large-scale datasets (mobile calls, text messages, Twitter mentions, and Wikipedia talk pages), they showed universality in the distributions of tie strengths and their individual-level variations. To explain this universality, \citet{iniguez2023universal} introduced a microscopic model of egocentric network evolution driven by a dynamic competition between two fundamental behavioral mechanisms:
 \begin{enumerate}
     \item \textbf{Cumulative Advantage (Preferential Tie Reinforcement)}: An ego directs communication to existing alters with probability proportional to past interactions, parameterized by an alter-preferentiality exponent, $w_{ir}^\beta$.
     \item \textbf{Random Choice (Exploratory Communication)}: An ego explores new ties or contacts existing alters at random, independent of past interaction history.
@@ -127,7 +127,7 @@ The balance between these forces is captured by the alter-preferentiality parame
 
 Extending this generative framework to offline physical settings, \citet{adel2026preferentiality} analyzed face-to-face wearable sensor logs and spatial colocation traces alongside online communication networks. Their findings revealed that while spatial colocation (physical proximity without active engagement) is a noisy proxy that fails to exhibit social signature structure, active face-to-face interactions conform precisely to the preferentiality dynamics identified by \citet{iniguez2023universal}. Crucially, \citet{adel2026preferentiality} showed that empirical personal networks operate under a bounded communication bandwidth, identifying a universal scaling relationship between tie preferentiality ($\beta$) and bandwidth capacity that holds across both online and offline social systems.
 
-\subsection{Methodological Refinements: Disentangling Network Size from Tie Strength Heterogeneity}
+\subsection{Disentangling Degree and Tie Strength}
 
 As the empirical literature expanded, methodologists noted an important vulnerability in how social signature persistence had historically been measured. In a rigorous examination, \citet{heydari2024disentangling} and \citet{heydari2024dynamic} pointed out that an ego's social signature contains two distinct structural features: its length (the personal network size or degree, $k$) and the internal distribution of interaction weights across those ranks (tie strength heterogeneity).
 
@@ -145,7 +145,7 @@ and the normalized alter-preferentiality distance derived from I{\~n}iguez and c
 \end{equation}
 Applying these degree-invariant measures to large-scale mobile phone datasets, \citet{heydari2024disentangling} proved that the persistence of personal network structure cannot be attributed to degree stability alone. Even after strictly controlling for degree differences, intra-individual distances remained significantly smaller than inter-individual reference distances. This confirmed that tie strength heterogeneity is an authentic, independent behavioral trait of egos: individuals possess an enduring personal allocation style (whether concentrated or egalitarian) that persists independently of how many contacts they maintain.
 
-\subsection{Longitudinal Drift, Biometric Uniqueness, and Privacy}
+\subsection{Longitudinal Stability and Privacy}
 
 Finally, two recent developments have examined the longitudinal boundaries of signature persistence and its implications for individual privacy. 
 
@@ -153,7 +153,7 @@ Investigating the temporal stability of social signatures over extended observat
 
 Conversely, the very uniqueness and temporal persistence of personal allocation profiles has raised significant data privacy concerns. Showing this potential for behavioral re-identification, \citet{jia2025multidimensional} examined how multidimensional social signatures constructed from interaction timing, contact volume, and communication ranks can de-anonymize users in supposedly anonymous datasets. Using low-sensitivity interaction metadata from email, call logs, and app engagement records, \citet{jia2025multidimensional} achieved user re-identification accuracies of up to 87\%. Their findings establish that an individual's communication signature is so distinct and persistent that it operates as a behavioral biometric fingerprint, challenging conventional assumptions regarding the safety of anonymized network data under privacy regulations such as the GDPR and CCPA.
 
-\subsection{Critical Open Questions and Frontiers Addressed by the NetHealth Study}
+\subsection{Open Questions and Frontiers}
 
 Despite the substantial progress achieved across these studies, the literature has reached an empirical impasse defined by five major open questions that existing commercial datasets cannot answer:
 
@@ -184,9 +184,9 @@ Despite the substantial progress achieved across these studies, the literature h
     \textit{The NetHealth Resolution}: NetHealth pairs continuous individual phone logs with 174,748 alter-alter structural ties connecting peers within each respondent's personal egocentric network across survey waves. We estimate multilevel linear mixed-effects models predicting signature self-divergence ($\dself$) across consecutive semesters as a joint function of dyadic Jaccard turnover, triadic clustering, and communication volume shifts, providing the first structural panel evaluation of signature divergence.
 \end{enumerate}
 
-\section{Data and Methodology}
+\section{Data and Methods}
 
-\subsection{The NetHealth Dataset}
+\subsection{The NetHealth Cohort}
 The NetHealth study recruited an entire incoming cohort of first-year undergraduate students at the University of Notre Dame beginning in Fall 2015. Participants consented to continuous digital sensing via their smartphones and Fitbit devices, alongside dense sociocentric network and psychological surveys administered at regular intervals across their college careers. 
 
 Our analytical design links five primary data streams:
@@ -198,7 +198,7 @@ Our analytical design links five primary data streams:
     \item \textbf{Basic Psychometric Batteries}: Longitudinal survey instruments measuring the Big Five personality dimensions (Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness), the CES-D Depression Scale, and the UCLA Loneliness Scale.
 \end{enumerate}
 
-\subsection{Temporal Window Binning and Filtering}
+\subsection{Temporal Window Definitions}
 To establish whether social signatures persist across differing temporal resolutions, we construct two complementary binning architectures:
 \begin{itemize}
     \item \textbf{Calendar-Based Windows} (July 1, 2015 -- June 30, 2017):
@@ -241,7 +241,7 @@ Common Calendar Cohort & Jul 2015 -- Jun 2017 & -- & All 4 calendar schemes & 14
 }
 \end{table}
 
-\subsection{Mathematical Formulation of Social Signatures and Jensen-Shannon Divergence}
+\subsection{Signatures and Divergence Metrics}
 For ego $i$ in temporal window $w$, communication weights $w_{i,j,w}$ (measured as total outgoing voice calls) to alters $j = 1, \dots, k_{i,w}$ are sorted in descending order:
 \begin{equation}
 w_{i,(1),w} \ge w_{i,(2),w} \ge \dots \ge w_{i,(k),w}
@@ -282,9 +282,9 @@ We define two core divergence metrics:
 
 If personal social signatures exhibit persistent idiosyncratic stability over time, an individual's self-divergence must be systematically and significantly smaller than the reference divergence observed between random peers ($\dself < \dref$).
 
-\section{Empirical Results: Persistence and Parametric Architecture}
+\section{Results: Persistence and Scaling}
 
-\subsection{Empirical Social Signatures}
+\subsection{Signature Morphology}
 Figure~\ref{fig:mean_signatures} displays empirical social signatures averaged across egos for ranks 1 through 15 across temporal window definitions. Across all timescales, communication effort exhibits pronounced skewness:
 \begin{itemize}
     \item The single top-ranked alter ($r = 1$) commands \textbf{35\% to 45\%} of an ego's total communication bandwidth.
@@ -335,7 +335,7 @@ Across every temporal resolution examined, intra-individual self-divergence is s
 \label{fig:self_vs_ref}
 \end{figure}
 
-\subsection{Parametric Form: Power-Law vs.\ Exponential Decay}
+\subsection{Parametric Model Evaluation}
 We evaluated two competing functional specifications for the signature curve:
 \begin{align}
 \text{Power-Law: } p(r) &= c \cdot r^{-\alpha} \iff \log p(r) = \log c - \alpha \log r \\
@@ -366,7 +366,7 @@ As summarized in Table~\ref{tab:parametric_models} and Figure~\ref{fig:power_law
 \label{fig:power_law_exp}
 \end{figure}
 
-\subsection{Longitudinal Parameter Convergence and Burn-In}
+\subsection{Parameter Burn-In Convergence}
 To establish how long an individual must be observed before their estimated signature parameters stabilize, we tracked the common cohort across cumulative observation lengths from 2 to 24 months (Figure~\ref{fig:burnin}).
 \begin{itemize}
     \item At 2 months: Mean $\alpha = 1.16$, with a mean absolute error of 0.188 relative to the 24-month asymptotic value.
@@ -383,9 +383,9 @@ These findings show that \textbf{6 months of continuous digital observation} pro
 \label{fig:burnin}
 \end{figure}
 
-\section{Theoretical Expansions}
+\section{Substantive Expansions}
 
-\subsection{Functional Grounding of Communication Ranks in Social Support Dimensions}
+\subsection{Functional Support Dimensions}
 While prior literature has treated communication ranks as purely behavioral tallies, we linked $N = 13,174$ call-ranked dyads to longitudinal network surveys recording relationship categories and support functions across six theoretical Dunbar tiers (Table~\ref{tab:support_tiers} and Figure~\ref{fig:support_tiers}).
 
 \begin{table}[htbp]
@@ -423,7 +423,7 @@ The findings illuminate the qualitative architecture underlying social signature
 \label{fig:support_tiers}
 \end{figure}
 
-\subsection{The ``Slot-Filling'' Dynamic: Alter Turnover vs.\ Signature Stability}
+\subsection{The Slot-Filling Mechanism}
 A central theoretical puzzle in network science is how an ego's signature can remain stable despite frequent alter replacement. We calculated the dyadic Jaccard turnover between consecutive semesters:
 \begin{equation}
 \Turnover_{i,w} = 1 - \frac{|A_{i,w} \cap A_{i,w+1}|}{|A_{i,w} \cup A_{i,w+1}|}
@@ -441,7 +441,7 @@ This pattern provides direct empirical confirmation of the \textbf{slot-filling 
 \label{fig:turnover}
 \end{figure}
 
-\subsection{Multilevel Panel Models of Signature Divergence}
+\subsection{Multilevel Divergence Models}
 To identify the structural and psychological drivers of signature mutation over time, we estimated linear mixed-effects panel models with ego random intercepts:
 \begin{equation}
 \JSD_{it} = \beta_0 + \beta_1 \Turnover_{it} + \beta_2 \Delta \mathrm{Activity}_{it} + \mathbf{X}_{it}\boldsymbol{\gamma} + u_i + \epsilon_{it}
@@ -477,7 +477,7 @@ Ego Groups & 290 & 290 & 290 \\
 
 As reported in Table~\ref{tab:multilevel_models}, alter turnover is the primary driver of signature divergence ($\beta = 0.351, p < 10^{-15}$), followed by large shifts in communication volume ($\beta = 0.0014, p < 10^{-10}$). Net of turnover, egonet clustering does not significantly alter signature stability, underscoring that signatures reflect cognitive rather than purely topological constraints.
 
-\subsection{Personality Determinants of Signature Steepness}
+\subsection{Personality and Signature Shape}
 What psychological dispositions generate steep (core-concentrated) versus flat (diffuse) social signatures? Regressing ego-mean power-law decay exponents ($\alpha_i$) on Big Five personality traits and personal network degree (Table~\ref{tab:personality_models} and Figure~\ref{fig:personality}) reveals:
 
 \begin{table}[htbp]
@@ -510,7 +510,7 @@ Personal Network Degree & $-0.004^\dagger$ & 0.002 & $-1.76$ & 0.080 \\
 \label{fig:personality}
 \end{figure}
 
-\section{Discussion and Conclusion}
+\section{Discussion}
 
 By linking continuous passive smartphone logs with multi-wave sociocentric surveys and psychological batteries in the NetHealth cohort, this study provides definitive empirical backing for social signature theory while advancing the paradigm into sociological and psychological domains.
 
