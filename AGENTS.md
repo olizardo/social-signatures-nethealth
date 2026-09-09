@@ -1012,7 +1012,7 @@ The project synthesizes and advances a decade of multidisciplinary research buil
    - \citet{jia2025multidimensional}: Demonstrated that the idiosyncratic shape and stability of multidimensional social signatures allow user re-identification and de-anonymization (up to 87\% accuracy) in low-sensitivity interaction data, establishing that communication profiles function as behavioral biometric fingerprints.
 
 ### 3. Five Open Frontiers Addressed and Resolved by NetHealth
-1. **The "Content Black Box" & Functional Support Grounding**:
+1. **The "Content Black Box" & Social Support Grounding**:
    - *The Gap*: Prior work relied exclusively on telecommunications metadata devoid of relational content, leaving open whether rank order reflects mere call frequency or qualitative functional specialization.
    - *NetHealth Resolution*: Links $N = 13,174$ call-ranked dyads to longitudinal sociocentric surveys recording multidimensional social support. Rank 1 is a specialized kinship-dominated support hub (69.7\% family, 85.4\% emotional support, 87.6\% advice, 64.1\% financial aid), transitioning to sympathy groups (Ranks 2--3: 62.2\% kin, 77.1\% emotional support), peer friendship dominance (Ranks 4--5: 56.9\% friends; Ranks $>20$: 87.8\% friends), while companionship remains sustained across all tiers ($>69\%$).
 2. **Direct Empirical Verification of the Slot-Filling Mechanism**:
@@ -1044,7 +1044,7 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 - **Figure 3**: Power-Law vs Exponential Model Fits and Exponent Distribution (`Plots/fig03_power_law_vs_exponential.png`)
 - **Figure 4**: Parameter Burn-In Convergence Over 24 Months (`Plots/fig04_parameter_burnin.png`)
 - **Table 4**: Relational Composition and Support Functions Across Signature Rank Tiers ($N = 13,174$ Dyads) (`cache/table4_support_tiers.md`)
-- **Figure 5**: Functional Support Dimensions Across Signature Rank Tiers (High-contrast accessible color palette with zero light yellow; multi-row bottom legend) (`Plots/fig05_rank_by_support_tiers.png`)
+- **Figure 5**: Dimensions of Social Support Across Signature Rank Tiers (High-contrast accessible color palette with zero light yellow; multi-row bottom legend) (`Plots/fig05_rank_by_support_tiers.png`)
 - **Figure 6**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 10^{-15}$) (`Plots/fig06_turnover_vs_stability.png`)
 - **Table 5**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
 - **Table 6**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
