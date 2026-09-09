@@ -89,6 +89,10 @@ p1 <- ggplot(df_rank_summary, aes(x = rank, y = mean_prop, color = scheme, fill 
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   scale_color_brewer(palette = "Dark2") +
   scale_fill_brewer(palette = "Dark2") +
+  guides(
+    color = guide_legend(nrow = 2, byrow = TRUE),
+    fill  = guide_legend(nrow = 2, byrow = TRUE)
+  ) +
   labs(
     title = "Empirical Social Signatures across Temporal Window Resolutions",
     subtitle = "Ranked proportion of outgoing calls allocated to communication alters (Ranks 1–15)",
@@ -97,9 +101,13 @@ p1 <- ggplot(df_rank_summary, aes(x = rank, y = mean_prop, color = scheme, fill 
     color = "Window Definition:",
     fill = "Window Definition:"
   ) +
-  theme_nethealth()
+  theme_nethealth() +
+  theme(legend.position = "bottom",
+        legend.box = "horizontal",
+        legend.margin = margin(t = 6, b = 2))
 
 ggsave("output/plots/fig01_mean_signatures_by_window.png", p1, width = 8.5, height = 5.5, dpi = 300)
+ggsave("Plots/fig01_mean_signatures_by_window.png", p1, width = 8.5, height = 5.5, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 2: Self-Divergence vs Reference-Divergence (Replication Slide 14, 16, 17)
@@ -263,20 +271,89 @@ ggsave("output/plots/fig06_turnover_vs_stability.png", p6, width = 8.5, height =
 # Figure 7: Personality & Signature Steepness (Expansion 3)
 # ------------------------------------------------------------------------------
 cat("Generating Figure 7: Personality Predictors of Signature Alpha...\n")
-ego_covars <- expansion_d$ego_param_covariates
+ego_covars <- expansion_d$ego_param_covariates %>%
+  filter(!is.na(neuroticism), !is.na(mean_alpha))
 
-p7 <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
-  geom_point(aes(color = extraversion), size = 2.5, alpha = 0.7) +
-  geom_smooth(method = "lm", color = "#99000d", fill = "#fee5d9", linewidth = 1.1) +
-  scale_color_viridis_c(option = "viridis", name = "Extraversion Score") +
+# Panel A: Regression of Decay Exponent on Neuroticism
+p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
+  geom_point(aes(color = neuroticism), size = 2.4, alpha = 0.65) +
+  geom_smooth(method = "lm", color = "#b2182b", fill = "#fddbc7", linewidth = 1.1) +
+  scale_color_viridis_c(option = "magma", direction = -1, name = "Neuroticism Score:",
+                        guide = guide_colorbar(barwidth = 10, barheight = 0.6)) +
+  annotate("label", x = 1.5, y = 1.85, hjust = 0, size = 3.3,
+           label = "Linear Slope: \u03b2 = +0.098 (SE = 0.019)\nt = 5.08, p = 6.96 \u00d7 10\u207b\u2077\nR\u00b2 = 0.112",
+           fill = "white", color = "grey20") +
   labs(
-    title = "Personality Determinants of Egocentric Communication Allocation",
-    subtitle = "Neuroticism significantly predicts steeper social signatures (hyper-concentration on core alters; β = 0.098, p < 10⁻⁶)",
+    title = "(A) Exponent vs. Neuroticism",
     x = "Baseline Neuroticism Score (Big Five)",
-    y = "Mean Power-Law Decay Exponent (α)"
+    y = "Mean Power-Law Decay Exponent (\u03b1)"
   ) +
   theme_nethealth()
 
-ggsave("output/plots/fig07_personality_signature_effects.png", p7, width = 8.5, height = 5.2, dpi = 300)
+# Panel B: Signatures by Neuroticism Tertile
+ego_covars <- ego_covars %>%
+  mutate(
+    neuro_tertile = ntile(neuroticism, 3),
+    neuro_group = factor(neuro_tertile, levels = 1:3,
+                         labels = c("Low Neuroticism (T1)", "Moderate (T2)", "High Neuroticism (T3)"))
+  )
+
+sem_sigs <- sig_data$semester$sig_dt
+sem_merged <- merge(sem_sigs, ego_covars[, c("egoid", "neuro_group")], by = "egoid")
+
+rows <- list()
+for (i in 1:nrow(sem_merged)) {
+  p <- sem_merged$signature[[i]]
+  k <- min(length(p), 10)
+  rows[[length(rows) + 1]] <- tibble(
+    egoid = sem_merged$egoid[i],
+    neuro_group = sem_merged$neuro_group[i],
+    rank = 1:k,
+    proportion = p[1:k]
+  )
+}
+df_neuro_ranks <- bind_rows(rows) %>%
+  group_by(neuro_group, rank) %>%
+  summarise(
+    mean_prop = mean(proportion),
+    se_prop = sd(proportion) / sqrt(n()),
+    .groups = "drop"
+  )
+
+p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, fill = neuro_group)) +
+  geom_ribbon(aes(ymin = mean_prop - 1.96 * se_prop, ymax = mean_prop + 1.96 * se_prop),
+              alpha = 0.15, color = NA) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.2) +
+  scale_x_continuous(breaks = 1:10) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_color_manual(values = c("Low Neuroticism (T1)" = "#2166ac",
+                                "Moderate (T2)" = "#67a9cf",
+                                "High Neuroticism (T3)" = "#b2182b"),
+                     name = "Neuroticism Group:") +
+  scale_fill_manual(values = c("Low Neuroticism (T1)" = "#2166ac",
+                               "Moderate (T2)" = "#67a9cf",
+                               "High Neuroticism (T3)" = "#b2182b"),
+                    name = "Neuroticism Group:") +
+  guides(color = guide_legend(nrow = 1), fill = guide_legend(nrow = 1)) +
+  labs(
+    title = "(B) Mean Signatures by Neuroticism Tertile",
+    x = "Alter Rank (1\u201310)",
+    y = "Proportion of Outgoing Calls"
+  ) +
+  theme_nethealth()
+
+p7_combined <- (p7a | p7b) +
+  plot_annotation(
+    title = "Neuroticism as a Driver of Egocentric Relational Concentration",
+    subtitle = "Higher Neuroticism predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 10\u207b\u2076) and greater allocation to primary alters",
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 13),
+      plot.subtitle = element_text(color = "grey30", size = 11, margin = margin(b = 6))
+    )
+  )
+
+ggsave("output/plots/fig07_personality_signature_effects.png", p7_combined, width = 9.5, height = 5.2, dpi = 300)
+ggsave("Plots/fig07_personality_signature_effects.png", p7_combined, width = 9.5, height = 5.2, dpi = 300)
 
 cat("\n>>> Step 7 completed successfully! All 7 figures saved to output/plots/\n")
