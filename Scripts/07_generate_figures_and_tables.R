@@ -226,12 +226,22 @@ tier_long <- tier_summary %>%
                              "Relational Category", "Support Function")
   )
 
+palette_fig5 <- c(
+  "Family Kinship"    = "#1f78b4",  # Deep Blue
+  "Friend Peer"       = "#33a02c",  # Green
+  "Emotional Support" = "#e31a1c",  # Crimson
+  "Advice Support"    = "#ff7f00",  # Amber/Orange
+  "Companionship"     = "#6a3d9a",  # Purple
+  "Financial Support" = "#b15928"   # Rich Brown
+)
+
 p5 <- ggplot(tier_long, aes(x = rank_tier, y = percent, group = dimension, color = dimension)) +
   geom_line(linewidth = 1.1) +
   geom_point(size = 2.5) +
   facet_wrap(~ dimension_type, scales = "free_y") +
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
-  scale_color_brewer(palette = "Set1") +
+  scale_color_manual(values = palette_fig5) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title = "Functional Grounding of Communication Ranks in Social Support Dimensions",
     subtitle = "Survey-reported ties and support functions across call signature rank tiers (N = 13,174 dyads)",
@@ -240,9 +250,12 @@ p5 <- ggplot(tier_long, aes(x = rank_tier, y = percent, group = dimension, color
     color = "Support / Relation:"
   ) +
   theme_nethealth() +
-  theme(axis.text.x = element_text(angle = 25, hjust = 1))
+  theme(axis.text.x = element_text(angle = 25, hjust = 1),
+        legend.position = "bottom",
+        legend.box = "horizontal")
 
 ggsave("output/plots/fig05_rank_by_support_tiers.png", p5, width = 9.5, height = 5.5, dpi = 300)
+ggsave("Plots/fig05_rank_by_support_tiers.png", p5, width = 9.5, height = 5.5, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 6: Alter Turnover vs Signature Divergence (Expansion 2)
@@ -335,13 +348,16 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
                                "Moderate (T2)" = "#67a9cf",
                                "High Neuroticism (T3)" = "#b2182b"),
                     name = "Neuroticism Group:") +
-  guides(color = guide_legend(nrow = 1), fill = guide_legend(nrow = 1)) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE), 
+         fill  = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title = "(B) Mean Signatures by Neuroticism Tertile",
     x = "Alter Rank (1\u201310)",
     y = "Proportion of Outgoing Calls"
   ) +
-  theme_nethealth()
+  theme_nethealth() +
+  theme(legend.position = "bottom",
+        legend.margin = margin(t = 4, b = 2))
 
 p7_combined <- (p7a | p7b) +
   plot_annotation(
