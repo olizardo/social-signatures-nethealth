@@ -979,7 +979,7 @@ project/
 ## Project Architecture: Social Signatures in the NetHealth Study
 
 ### 1. Overview & Document Identification
-- **Project Title:** Examining the Persistent Architecture of Relational Investment (Working Subtitle: *The Persistent Architecture of Relational Investment: Social Signatures in the NetHealth Study*)
+- **Project Title:** Examining the Relational Content and Personal Determinants of Social Signatures Across Multiple Time Scales (Working Subtitle: *The Persistent Architecture of Relational Investment: Social Signatures in the NetHealth Study*)
 - **Authors:** Omar Lizardo (Department of Sociology, University of California, Los Angeles) and David Hachen (Department of Sociology, University of Notre Dame)
 - **Primary Publication Manuscript:** `manuscript.tex` (Synchronized directly with Overleaf and GitHub)
 - **Bibliography:** `references.bib` (BibTeX database integrated via `natbib`)
