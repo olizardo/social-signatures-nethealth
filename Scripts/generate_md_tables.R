@@ -92,10 +92,10 @@ t5_wide <- t5_raw %>%
       term == "(Intercept)" ~ "Intercept",
       term == "turnover" ~ "Alter Turnover (1 - Jaccard)",
       term == "pct_activity_change" ~ "% Activity Change (|ΔCalls|/Calls)",
-      term == "egonet_clustering" ~ "Egonet Clustering Coefficient",
-      term == "egonet_density" ~ "Egonet Density",
+      term == "egonet_clustering" ~ "Ego Network Clustering Coefficient",
+      term == "egonet_density" ~ "Ego Network Density",
       term == "extraversion" ~ "Baseline Extraversion",
-      term == "neuroticism" ~ "Baseline Neuroticism",
+      term == "neuroticism" ~ "Baseline Negative Emotionality",
       term == "cesd_depression" ~ "Baseline CES-D Depression",
       TRUE ~ term
     ),
@@ -117,7 +117,7 @@ t6_md <- t6_raw %>%
     term_clean = case_when(
       term == "(Intercept)" ~ "Intercept",
       term == "extraversion" ~ "Extraversion",
-      term == "neuroticism" ~ "Neuroticism",
+      term == "neuroticism" ~ "Negative Emotionality",
       term == "agreeableness" ~ "Agreeableness",
       term == "conscientiousness" ~ "Conscientiousness",
       term == "openness" ~ "Openness",

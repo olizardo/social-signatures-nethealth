@@ -287,28 +287,28 @@ cat("Generating Figure 7: Personality Predictors of Signature Alpha...\n")
 ego_covars <- expansion_d$ego_param_covariates %>%
   filter(!is.na(neuroticism), !is.na(mean_alpha))
 
-# Panel A: Regression of Decay Exponent on Neuroticism
+# Panel A: Regression of Decay Exponent on Negative Emotionality
 p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
   geom_point(aes(color = neuroticism), size = 2.4, alpha = 0.65) +
   geom_smooth(method = "lm", color = "#b2182b", fill = "#fddbc7", linewidth = 1.1) +
-  scale_color_viridis_c(option = "magma", direction = -1, name = "Neuroticism Score:",
+  scale_color_viridis_c(option = "magma", direction = -1, name = "Negative Emotionality:",
                         guide = guide_colorbar(barwidth = 10, barheight = 0.6)) +
   annotate("label", x = 1.5, y = 1.85, hjust = 0, size = 3.3,
            label = "Linear Slope: \u03b2 = +0.098 (SE = 0.019)\nt = 5.08, p = 6.96 \u00d7 10\u207b\u2077\nR\u00b2 = 0.112",
            fill = "white", color = "grey20") +
   labs(
-    title = "(A) Exponent vs. Neuroticism",
-    x = "Baseline Neuroticism Score (Big Five)",
+    title = "(A) Exponent vs. Negative Emotionality",
+    x = "Baseline Negative Emotionality Score (Big Five)",
     y = "Mean Power-Law Decay Exponent (\u03b1)"
   ) +
   theme_nethealth()
 
-# Panel B: Signatures by Neuroticism Tertile
+# Panel B: Signatures by Negative Emotionality Tertile
 ego_covars <- ego_covars %>%
   mutate(
     neuro_tertile = ntile(neuroticism, 3),
     neuro_group = factor(neuro_tertile, levels = 1:3,
-                         labels = c("Low Neuroticism (T1)", "Moderate (T2)", "High Neuroticism (T3)"))
+                         labels = c("Low Neg. Emotionality (T1)", "Moderate (T2)", "High Neg. Emotionality (T3)"))
   )
 
 sem_sigs <- sig_data$semester$sig_dt
@@ -340,18 +340,18 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
   geom_point(size = 2.2) +
   scale_x_continuous(breaks = 1:10) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_color_manual(values = c("Low Neuroticism (T1)" = "#2166ac",
+  scale_color_manual(values = c("Low Neg. Emotionality (T1)" = "#2166ac",
                                 "Moderate (T2)" = "#67a9cf",
-                                "High Neuroticism (T3)" = "#b2182b"),
-                     name = "Neuroticism Group:") +
-  scale_fill_manual(values = c("Low Neuroticism (T1)" = "#2166ac",
+                                "High Neg. Emotionality (T3)" = "#b2182b"),
+                     name = "Negative Emotionality Group:") +
+  scale_fill_manual(values = c("Low Neg. Emotionality (T1)" = "#2166ac",
                                "Moderate (T2)" = "#67a9cf",
-                               "High Neuroticism (T3)" = "#b2182b"),
-                    name = "Neuroticism Group:") +
+                               "High Neg. Emotionality (T3)" = "#b2182b"),
+                    name = "Negative Emotionality Group:") +
   guides(color = guide_legend(nrow = 2, byrow = TRUE), 
          fill  = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
-    title = "(B) Mean Signatures by Neuroticism Tertile",
+    title = "(B) Mean Signatures by Negative Emotionality Tertile",
     x = "Alter Rank (1\u201310)",
     y = "Proportion of Outgoing Calls"
   ) +
@@ -361,8 +361,8 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
 
 p7_combined <- (p7a | p7b) +
   plot_annotation(
-    title = "Neuroticism as a Driver of Egocentric Relational Concentration",
-    subtitle = "Higher Neuroticism predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 10\u207b\u2076) and greater allocation to primary alters",
+    title = "Negative Emotionality as a Driver of Egocentric Relational Concentration",
+    subtitle = "Higher Negative Emotionality predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 10\u207b\u2076) and greater allocation to primary alters",
     theme = theme(
       plot.title = element_text(face = "bold", size = 13),
       plot.subtitle = element_text(color = "grey30", size = 11, margin = margin(b = 6))

@@ -1020,7 +1020,7 @@ The project synthesizes and advances a decade of multidisciplinary research buil
    - *NetHealth Resolution*: Across eight semesters with 80.1\% average alter turnover, we separate transitions where the top alter (Rank 1) is retained from those where Rank 1 is completely replaced. Even when Rank 1 is replaced, self-divergence increases only marginally (from 0.043 to 0.078), providing direct empirical proof of the slot-filling mechanism.
 3. **Psychological Foundations of Signature Curvature**:
    - *The Gap*: Theoretical models hypothesize that internal cognitive traits drive alter-preferentiality, but commercial CDRs possess zero psychometrics.
-   - *NetHealth Resolution*: Econometric regression of objective power-law decay exponents ($\alpha_i$) on longitudinal Big Five personality traits, CES-D depression, and UCLA loneliness scores shows that **Neuroticism strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, t = 5.08, p = 6.96 \times 10^{-7}$)**, whereas Extraversion displays no statistically significant effect ($t = -1.01, p = 0.314$).
+   - *NetHealth Resolution*: Econometric regression of objective power-law decay exponents ($\alpha_i$) on longitudinal Big Five personality traits, CES-D depression, and UCLA loneliness scores shows that **Negative Emotionality strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, t = 5.08, p = 6.96 \times 10^{-7}$)**, whereas Extraversion displays no statistically significant effect ($t = -1.01, p = 0.314$).
 4. **Multi-Timescale Hierarchy and Parameter Burn-In Convergence**:
    - *The Gap*: Prior work examined arbitrary, isolated observation windows (1 month, 6 months, 9 months) without establishing how long an ego must be observed for parameter estimates to stabilize.
    - *NetHealth Resolution*: Evaluates signatures across eight temporal window schemes (from 1-week discrete windows to full academic years) and tracks cumulative parameter stability from 2 to 24 months, showing that estimated decay exponents stabilize asymptotically within 6 to 8 months.
@@ -1048,7 +1048,7 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 - **Figure 6**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 10^{-15}$) (`Plots/fig06_turnover_vs_stability.png`)
 - **Table 5**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
 - **Table 6**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
-- **Figure 7**: Neuroticism as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Neuroticism effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Neuroticism; Panel B: mean signatures across ranks 1--10 stratified by Neuroticism tertiles with a multi-row legend, showing high-Neuroticism individuals allocate 31.7% to Rank 1 vs. 25.3% for low-Neuroticism peers; Extraversion removed) (`Plots/fig07_personality_signature_effects.png`)
+- **Figure 7**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 stratified by Negative Emotionality tertiles with a multi-row legend, showing high Negative Emotionality individuals allocate 31.7% to Rank 1 vs. 25.3% for low Negative Emotionality peers; Extraversion removed) (`Plots/fig07_personality_signature_effects.png`)
 
 ### 6. Directory Structure & Asset Taxonomy
 ```
@@ -1068,7 +1068,7 @@ social-signatures-nethealth/
     ├── 01_prepare_call_windows.R          # Temporal window binning & cohort filtering
     ├── 02_compute_signatures_and_jsd.R    # Social signature computation, fast JSD, Wilcoxon tests
     ├── 03_fit_parametric_models.R         # Power-law vs exponential models & burn-in analysis
-    ├── 04_egonet_topology_and_turnover.R  # Egonet metrics & alter turnover dynamics
+    ├── 04_egonet_topology_and_turnover.R  # Ego network metrics & alter turnover dynamics
     ├── 05_survey_linkage_psychometrics.R  # Support dimensions & Big Five psychometrics
     ├── 06_expansion_statistical_models.R  # Dyadic support tiers & multilevel LMM regressions
     ├── 07_generate_figures_and_tables.R   # Publication-quality figure and table rendering
