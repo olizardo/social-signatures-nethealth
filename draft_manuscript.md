@@ -8,7 +8,7 @@
 
 ## Abstract
 
-How do individuals allocate cognitive, temporal, and emotional bandwidth across their personal networks? Using high-resolution digital call records paired with 8-wave longitudinal network and psychometric surveys from the NetHealth study (*N* = 491 egos, 498,237 communication events), this paper investigates the structure, temporal stability, and psychological foundations of **social signatures**—the ranked proportion of communication effort allocated across alters within discrete temporal windows. We demonstrate that the core signature persistence hypothesis holds across multiple timescales (academic years, semesters, quarters, months, and rolling weekly windows): intra-individual self-divergence (*d*~self~) is uniformly and overwhelmingly smaller than inter-individual reference divergence (*d*~ref~, *p* < 10^-12^ across all resolutions). Parametric evaluations confirm that power-law models (*p*(*r*) ~ *r*^-*α*^, mean *R*^2^ = 0.935) fit empirical signatures significantly better than exponential decay models, with ego-specific decay exponents (*α*) converging to an asymptotic value within 6 to 8 months of continuous observation. Going beyond previous work, we introduce three substantive theoretical expansions: (1) **Social Support Grounding**: Linking communication ranks to multi-dimensional survey nominations (*N* = 13,174 dyads), we reveal that the steep drop in communication effort corresponds to sharp qualitative transitions from family-dominated instrumental and emotional support (Rank 1: 69.7% kin, 85.4% emotional support, 87.6% advice) to friend-dominated companionship at lower ranks; (2) **The Slot-Filling Dynamic**: We show that high signature stability persists despite massive alter turnover (averaging 80.1% across semesters), providing direct evidence that college students replenish relational slots with new alters rather than restructuring their overall allocation profile; and (3) **Psychological Determinants**: Using longitudinal mixed-effects and cross-sectional models, we demonstrate that Negative Emotionality strongly predicts steeper, hyper-concentrated signatures (*β* = 0.098, *p* < 10^-6^), revealing that elevated negative emotionality drives disproportionate reliance on core ties.
+How do individuals allocate cognitive, temporal, and emotional bandwidth across their personal networks? Using high-resolution digital call records paired with 8-wave longitudinal network and psychometric surveys from the NetHealth study (*N* = 491 egos, 498,237 communication events), this paper investigates the structure, temporal stability, and psychological foundations of **social signatures**—the ranked proportion of communication effort allocated across alters within discrete temporal windows. We demonstrate that the core signature persistence hypothesis holds across multiple timescales (academic years, semesters, quarters, months, and rolling weekly windows): intra-individual self-divergence (*d*~self~) is uniformly and overwhelmingly smaller than inter-individual reference divergence (*d*~ref~, *p* < 0.0001 across all resolutions). Parametric evaluations confirm that power-law models (*p*(*r*) ~ *r*^-*α*^, mean *R*^2^ = 0.935) fit empirical signatures significantly better than exponential decay models, with ego-specific decay exponents (*α*) converging to an asymptotic value within 6 to 8 months of continuous observation. Going beyond previous work, we introduce three substantive theoretical expansions: (1) **Social Support Grounding**: Linking communication ranks to multi-dimensional survey nominations (*N* = 13,174 dyads), we reveal that the steep drop in communication effort corresponds to sharp qualitative transitions from family-dominated instrumental and emotional support (Rank 1: 69.7% kin, 85.4% emotional support, 87.6% advice) to friend-dominated companionship at lower ranks; (2) **The Slot-Filling Dynamic**: We show that high signature stability persists despite massive alter turnover (averaging 80.1% across semesters), providing direct evidence that college students replenish relational slots with new alters rather than restructuring their overall allocation profile; and (3) **Psychological Determinants**: Using longitudinal mixed-effects and cross-sectional models, we demonstrate that Negative Emotionality strongly predicts steeper, hyper-concentrated signatures (*β* = 0.098, *p* < 0.0001), revealing that elevated negative emotionality drives disproportionate reliance on core ties.
 
 ---
 
@@ -90,7 +90,7 @@ Table 2 reports the formal statistical comparison between intra-individual self-
 {{TABLE_2}}
 **Table 2.** Statistical Tests of Social Signature Persistence
 
-Across every temporal resolution examined, intra-individual self-divergence is significantly lower than inter-individual reference divergence (*p* < 10^-12^, Wilcoxon signed-rank test). In the semester window definition, mean self-divergence is 0.0614, compared to a reference divergence of 0.1184 (*V* = 1136, *p* = 1.27 · 10^-44^). Even at fine-grained weekly scales (3-week rolling windows), an individual's signature remains exceptionally consistent across time (*d*~self~ = 0.0495) relative to the broader population (*d*~ref~ = 0.1411, *p* = 1.90 · 10^-16^). As shown in Figure 2, the distributions of self and reference divergence exhibit minimal overlap, confirming that personal communication signatures reflect enduring individual attributes.
+Across every temporal resolution examined, intra-individual self-divergence is significantly lower than inter-individual reference divergence (*p* < 0.0001, Wilcoxon signed-rank test). In the semester window definition, mean self-divergence is 0.0614, compared to a reference divergence of 0.1184 (*V* = 1136, *p* < 0.0001). Even at fine-grained weekly scales (3-week rolling windows), an individual's signature remains exceptionally consistent across time (*d*~self~ = 0.0495) relative to the broader population (*d*~ref~ = 0.1411, *p* < 0.0001). As shown in Figure 2, the distributions of self and reference divergence exhibit minimal overlap, confirming that personal communication signatures reflect enduring individual attributes.
 
 {{FIGURE_2}}
 **Figure 2.** Persistence of Social Signatures: Self vs. Reference Divergence
@@ -133,12 +133,25 @@ The findings (Table 4, Figure 5) illuminate the qualitative architecture underly
 1. **The Kinship Core**: Rank 1 is heavily dominated by family members (69.7% kin, primarily parents and romantic partners), who provide the structural foundation of instrumental, advice, and financial support (64.1% financial assistance, 87.6% advice, 85.4% emotional support).
 2. **The Friendship Transition**: A sharp structural crossover occurs between Ranks 3 and 5. At Ranks 2–3, family members still constitute 62.2% of ties; by Ranks 4–5, peer friends constitute the majority (56.9%), rising to 87.8% beyond Rank 20.
 3. **Differentiated Support Gradient**: Emotional support (85.4% at Rank 1) and advice support (87.6% at Rank 1) fall monotonically across tiers (dropping to 39.1% and 44.0% for outer ties). In sharp contrast, companionship remains elevated across all tiers (80.6% at Rank 1, 81.9% at Ranks 4–5, and 69.4% beyond Rank 20), demonstrating that peripheral communication ties serve primary social leisure and recreational functions.
-4. **Evaluative and Cognitive Alignment**: An alter's signature slot is strongly correlated with subjective closeness (*r* = -0.222, with 93.7% of Rank 1 alters rated "especially close" vs. 52.7% at Ranks >20), tie duration (*r* = -0.266, averaging 14.2 years at Rank 1 vs. 4.9 years at Ranks >20), and cognitive salience (*r* = 0.243, with 36.4% of Rank 1 alters recalled and named first in the survey). In multivariable models predicting communication proportion, tie duration (*β* = +0.306), cognitive salience (*β* = +0.255), subjective closeness (*β* = +0.050), and trust (*β* = +0.060) each maintain highly significant independent effects (*p* < 0.001, *R*^2^ = 0.201).
 
 {{FIGURE_5}}
 **Figure 5.** Dimensions of Social Support Across Signature Rank Tiers
 
-### 4.2 The "Slot-Filling" Dynamic: Alter Turnover vs. Signature Stability
+### 4.2 Evaluative and Cognitive Alignment: Closeness, Duration, and Salience
+Beyond discrete provisions of social support, an alter's position slot in the social signature is strongly and systematically correlated with the primary evaluative and cognitive dimensions recorded in the network survey (Figure 5B, Table 4B):
+- **Subjective Closeness**: 93.7% of Rank 1 alters are rated "especially close" (mean 3.93 on a 1–4 scale), tapering steadily to 52.7% for alters at Ranks >20 (*r* = -0.222, *p* < 0.0001; with call proportion *r* = +0.238).
+- **Relationship Duration**: Rank 1 alters average 14.2 years of relationship history (median 18.8 years), capturing lifelong family and childhood confidants, compared to 4.9 years (median 2.1 years) for outer-tier contacts formed during college (*r* = -0.266, *p* < 0.0001; with call proportion *r* = +0.333).
+- **Cognitive Recall Salience**: Over one-third (36.4%) of Rank 1 alters are recalled and named first in the survey (71.2% in the top 5), whereas outer-tier alters average a recall position of 9.9 (*r* = +0.243, *p* < 0.0001; with call proportion *r* = +0.282).
+
+{{FIGURE_5B}}
+**Figure 5B.** Evaluative and Cognitive Alignment Across Social Signature Rank Tiers
+
+To test whether these dimensions independently predict signature placement, Table 4B reports nested multivariable regressions across *N* = 10,828 complete dyadic observations. Adding tie duration to evaluative closeness doubles explained variance from 7.5% to 15.1% (*p* < 0.0001), and adding cognitive salience further elevates *R*^2^ to 20.1% (*F* = 682.5, *p* < 0.0001). In Model 4, all three dimensions significantly predict an alter's ordinal signature rank (*R*^2^ = 0.144, *p* < 0.0001).
+
+{{TABLE_4B}}
+**Table 4B.** Multivariable Regressions Predicting Signature Allocation and Rank from Tie Attributes
+
+### 4.3 The "Slot-Filling" Dynamic: Alter Turnover vs. Signature Stability
 A central theoretical puzzle in network science is how an ego's signature can remain stable despite frequent alter replacement. We calculated the dyadic Jaccard turnover (1 - *J*) between consecutive semesters.
 
 Remarkably, **alter turnover between consecutive semesters averages 80.1% (SD = 0.076)**. Despite replacing four out of five alters every six months, egos maintain an average self-divergence of only 0.0614. In 59.1% of consecutive semester intervals, the single top-ranked alter was retained; even when the top alter was replaced, the overall self-divergence increased only modestly (from 0.0431 to 0.0785, Figure 6). 
@@ -146,24 +159,24 @@ Remarkably, **alter turnover between consecutive semesters averages 80.1% (SD = 
 This pattern provides direct empirical confirmation of the **slot-filling hypothesis**: an individual maintains a predefined cognitive template for relationship allocation, seamlessly slotting new social entrants into vacant relational positions without perturbing their structural allocation curve.
 
 {{FIGURE_6}}
-**Figure 6.** The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence
+**Figure 6.** The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence (*r* = 0.456, *p* < 0.0001)
 
-### 4.3 Multilevel Panel Models of Signature Divergence
+### 4.4 Multilevel Panel Models of Signature Divergence
 To identify the structural and psychological drivers of signature mutation over time, we estimated linear mixed-effects panel models with ego random intercepts:
 Self-JSD~*it*~ = *β*~0~ + *β*~1~ Turnover~*it*~ + *β*~2~ ΔActivity~*it*~ + **X**~*it*~ **γ** + *u~i~* + *ε~it~*
 
 {{TABLE_5}}
 **Table 5.** Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence
 
-As reported in Table 5, alter turnover is the primary driver of signature divergence (*β* = 0.351, *p* < 10^-15^), followed by large shifts in communication volume (*β* = 0.0014, *p* < 10^-10^). Net of turnover, ego network clustering does not significantly alter signature stability, underscoring that signatures reflect cognitive rather than purely topological constraints.
+As reported in Table 5, alter turnover is the primary driver of signature divergence (*β* = 0.351, *p* < 0.0001), followed by large shifts in communication volume (*β* = 0.0014, *p* < 0.0001). Net of turnover, ego network clustering does not significantly alter signature stability, underscoring that signatures reflect cognitive rather than purely topological constraints.
 
-### 4.4 Personality Determinants of Signature Steepness
+### 4.5 Personality Determinants of Signature Shape
 What psychological dispositions generate steep (core-concentrated) versus flat (diffuse) social signatures? Regressing ego-mean power-law decay exponents (*α~i~*) on Big Five personality traits and personal network degree (Table 6, Figure 7) reveals:
 
 {{TABLE_6}}
 **Table 6.** Personality Determinants of Social Signature Power-Law Alpha
 
-**Negative Emotionality is a highly significant, positive predictor of signature steepness (*β* = 0.098, *t* = 5.08, *p* < 10^-6^)**. Individuals high in negative emotionality exhibit hyper-concentrated communication profiles, funneling the vast majority of their interactions into one or two primary alters while under-investing in intermediate and outer bands. Agreeableness also exhibits a modest positive association with concentration (*β* = 0.063, *p* = 0.014). In contrast, extraversion tends to flatten signatures toward broader alter engagement.
+**Negative Emotionality is a highly significant, positive predictor of signature steepness (*β* = 0.098, *t* = 5.08, *p* < 0.0001)**. Individuals high in negative emotionality exhibit hyper-concentrated communication profiles, funneling the vast majority of their interactions into one or two primary alters while under-investing in intermediate and outer bands. Agreeableness also exhibits a modest positive association with concentration (*β* = 0.063, *p* = 0.014). In contrast, extraversion tends to flatten signatures toward broader alter engagement.
 
 {{FIGURE_7}}
 **Figure 7.** Personality Predictors of Social Signature Alpha

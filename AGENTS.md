@@ -1043,12 +1043,14 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 - **Table 3**: Parametric Model Evaluation Across Window Resolutions (Power-Law vs. Exponential) (`cache/table3_parametric_models.md`)
 - **Figure 3**: Power-Law vs Exponential Model Fits and Exponent Distribution (`Plots/fig03_power_law_vs_exponential.png`)
 - **Figure 4**: Parameter Burn-In Convergence Over 24 Months (`Plots/fig04_parameter_burnin.png`)
-- **Table 4**: Relational Composition and Support Functions Across Signature Rank Tiers ($N = 13,174$ Dyads) (`cache/table4_support_tiers.md`)
+- **Table 4**: Relational Composition and Social Support Dimensions Across Signature Rank Tiers ($N = 13,174$ Dyads) (`cache/table4_support_tiers.md`)
 - **Figure 5**: Dimensions of Social Support Across Signature Rank Tiers (High-contrast accessible color palette with zero light yellow; multi-row bottom legend) (`Plots/fig05_rank_by_support_tiers.png`)
-- **Figure 6**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 10^{-15}$) (`Plots/fig06_turnover_vs_stability.png`)
-- **Table 5**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
-- **Table 6**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
-- **Figure 7**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 stratified by Negative Emotionality tertiles with a multi-row legend, showing high Negative Emotionality individuals allocate 31.7% to Rank 1 vs. 25.3% for low Negative Emotionality peers; Extraversion removed) (`Plots/fig07_personality_signature_effects.png`)
+- **Figure 6**: Evaluative and Cognitive Alignment Across Social Signature Rank Tiers (3-panel visualization of subjective closeness, relationship duration, and cognitive recall salience) (`Plots/fig05b_closeness_duration_salience.png`)
+- **Table 5**: Multivariable Regressions Predicting Signature Allocation and Rank from Tie Attributes ($N = 10,828$ Dyads) (`cache/table4b_tie_regressions.md`)
+- **Figure 7**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 0.0001$) (`Plots/fig06_turnover_vs_stability.png`)
+- **Table 6**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
+- **Table 7**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
+- **Figure 8**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 stratified by Negative Emotionality tertiles with a multi-row legend, showing high Negative Emotionality individuals allocate 31.7% to Rank 1 vs. 25.3% for low Negative Emotionality peers; Extraversion removed) (`Plots/fig07_personality_signature_effects.png`)
 
 ### 6. Directory Structure & Asset Taxonomy
 ```

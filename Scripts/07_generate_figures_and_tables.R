@@ -271,7 +271,7 @@ p6 <- ggplot(sem_turnover, aes(x = turnover, y = self_jsd)) +
   scale_x_continuous(labels = scales::percent_format()) +
   labs(
     title = "The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence",
-    subtitle = sprintf("Semesters: r = 0.456 (p < 10⁻¹⁵); despite 80%% average tie turnover, signatures remain stable (mean JSD = 0.061)"),
+    subtitle = sprintf("Semesters: r = 0.456 (p < 0.0001); despite 80%% average tie turnover, signatures remain stable (mean JSD = 0.061)"),
     x = "Dyadic Alter Turnover Between Semesters (1 - Jaccard)",
     y = "Self-Divergence (JSD between consecutive windows)",
     color = "Core Continuity:"
@@ -294,7 +294,7 @@ p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
   scale_color_viridis_c(option = "magma", direction = -1, name = "Negative Emotionality:",
                         guide = guide_colorbar(barwidth = 10, barheight = 0.6)) +
   annotate("label", x = 1.5, y = 1.85, hjust = 0, size = 3.3,
-           label = "Linear Slope: \u03b2 = +0.098 (SE = 0.019)\nt = 5.08, p = 6.96 \u00d7 10\u207b\u2077\nR\u00b2 = 0.112",
+           label = "Linear Slope: \u03b2 = +0.098 (SE = 0.019)\nt = 5.08, p < 0.0001\nR\u00b2 = 0.112",
            fill = "white", color = "grey20") +
   labs(
     title = "(A) Exponent vs. Negative Emotionality",
@@ -362,7 +362,7 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
 p7_combined <- (p7a | p7b) +
   plot_annotation(
     title = "Negative Emotionality as a Driver of Egocentric Relational Concentration",
-    subtitle = "Higher Negative Emotionality predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 10\u207b\u2076) and greater allocation to primary alters",
+    subtitle = "Higher Negative Emotionality predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 0.0001) and greater allocation to primary alters",
     theme = theme(
       plot.title = element_text(face = "bold", size = 13),
       plot.subtitle = element_text(color = "grey30", size = 11, margin = margin(b = 6))
