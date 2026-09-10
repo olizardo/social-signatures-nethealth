@@ -48,7 +48,7 @@ To establish whether social signatures persist across differing temporal resolut
   - *2-Week Discrete Windows* (*W* = 52): Non-overlapping 14-day intervals.
   - *1-Week Discrete Windows* (*W* = 104): 7-day intervals.
 
-To ensure that estimated signatures reflect meaningful personal communication structures, egos are required to meet two standard inclusion criteria: (a) a minimum of 2 active alters in every window (*k* >= 2), and (b) an average call volume exceeding 10 calls per window. When comparing across calendar definitions, we evaluate the common intersection cohort (*N* = 147 egos).
+To ensure that estimated signatures reflect meaningful personal communication structures, egos are required to meet two standard inclusion criteria: (a) a minimum of 2 active alters in every window (*k* >= 2), and (b) an average call volume exceeding 10 calls per window. While the overarching sensing pool comprises *N* = 491 unique egos with outgoing calls, the number of eligible participants varies across timescales based on continuous observation requirements: Academic Years (*N* = 388), Semesters (*N* = 290), Quarters (*N* = 227), Months (*N* = 147), and Rolling Weekly Windows (*N* = 88). The collegiate semester timescale (*N* = 290 egos) serves as our primary analytical cohort for subsequent dyadic, panel, and personality modeling. When directly comparing across calendar resolutions, we evaluate the common calendar cohort (*N* = 147 egos) present in all four schemes simultaneously.
 
 {{TABLE_1}}
 **Table 1.** NetHealth Cohort Summary Across Temporal Window Definitions
@@ -124,7 +124,7 @@ These findings indicate that **6 months of continuous digital observation** prov
 ## 4. Theoretical Expansions
 
 ### 4.1 Grounding Communication Ranks in Dimensions of Social Support
-While prior literature has treated communication ranks as purely behavioral tallies, we linked *N* = 13,174 call-ranked dyads to longitudinal network surveys recording relationship categories and support functions across six theoretical Dunbar tiers:
+While prior literature has treated communication ranks as purely behavioral tallies, we linked the call records of the collegiate semester cohort (*N* = 290 egos) to the longitudinal network surveys. This matched *N* = 13,174 call-ranked dyadic observations across 283 unique egos (7 egos nominated no active alters in the survey) to relationship categories and support functions across six theoretical Dunbar tiers:
 
 {{TABLE_4}}
 **Table 4.** Relational Composition and Support Functions Across Signature Rank Tiers
