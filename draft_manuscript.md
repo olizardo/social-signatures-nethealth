@@ -194,12 +194,13 @@ While linear regression tests parametric main effects, it assumes strictly addit
 
 ## 5. Discussion and Conclusion
 
-By linking continuous passive smartphone logs with multi-wave ego-network surveys and psychological batteries in the NetHealth cohort, this study provides definitive empirical backing for social signature theory while advancing the paradigm into sociological and psychological domains.
+By linking continuous passive smartphone logs with multi-wave ego-network surveys and psychological batteries in the NetHealth cohort, this study provides empirical backing for social signature theory while advancing the paradigm into sociological and psychological domains.
 
-Our key findings are threefold:
-1. **Unambiguous Persistence**: Social signatures in NetHealth are robustly persistent across timescales ranging from 3-week rolling windows to multi-year academic terms. An individual's signature divergence across time is less than half the divergence observed between random peers.
-2. **Substantive Grounding**: Social signature ranks are not arbitrary artifacts of call logging; they map directly to evolutionary Dunbar tiers. Rank 1 represents a specialized kin-based support hub, Ranks 2–5 represent the core emotional confidant circle, and ranks beyond 5 represent peer-based companionship.
-3. **The Psychological Signature**: The shape of the social signature is anchored in personality. Elevated negative emotionality drives individuals to adopt steep, risk-averse, hyper-concentrated allocation strategies, while agreeable individuals and those low in negative emotionality allocate attention across broader social circles.
+Our key findings span four fundamental domains:
+1. **Unambiguous Persistence**: Social signatures in NetHealth are persistent across timescales ranging from 3-week rolling windows to multi-year academic terms. An individual's signature divergence across time is less than half the divergence observed between random peers.
+2. **Substantive Grounding in Social Support**: Social signature ranks are not arbitrary artifacts of call logging; they map directly to evolutionary Dunbar tiers. Rank 1 represents a specialized kin-based support hub, Ranks 2–5 represent the core emotional confidant circle, and ranks beyond 5 represent peer-based companionship.
+3. **Evaluative and Cognitive Alignment**: Position slots in the social signature strongly align with subjective closeness (*p* < 0.0001), relationship duration (*p* < 0.0001), and top-of-mind cognitive recall salience (*p* < 0.0001). In linear mixed-effects models accounting for clustering within egos, relationship longevity and recall salience remain powerful independent predictors of communication investment.
+4. **The Psychological Signature and Conditional Moderation**: The shape of the social signature is anchored in personality dispositions. Negative Emotionality drives individuals to adopt steep, core-concentrated allocation strategies (*β* = 0.098, *p* < 0.0001). Decision-tree modeling (CART) reveals that Extraversion acts as a protective moderator: among emotionally reactive individuals, introversion accelerates retreat into an exclusive relational dyad, while extraversion preserves broader social connectivity.
 
 Future research should leverage high-resolution wearable sensing (Fitbit physical activity, sleep regularity, and colocation traces) to examine whether disruptions in social signature equilibrium serve as early-warning biomarkers for academic distress and psychological strain during major life transitions.
 
