@@ -1128,6 +1128,8 @@ social-signatures-nethealth/
     - Psychometric modeling in this project focuses strictly on validated **Big Five personality dimensions** (Extraversion, Agreeableness, Conscientiousness, Negative Emotionality, Openness). Do not cite or reference the CES-D Depression Scale or UCLA Loneliness Scale in the study design, model tables, or narrative conclusions, as they are not used in the empirical models.
 15. **NetHealth Study URL Reference**:
     - Whenever referencing the institutional NetHealth study design and data collection protocols, always cite the canonical project website: `https://sites.nd.edu/nethealth/` (`\url{https://sites.nd.edu/nethealth/}`).
+16. **"Social Network Analysis" Standard (Strictly Zero "Structural Sociology")**:
+    - Strictly use the disciplinary term **"social network analysis"** (or "network science" / "computational network science") rather than "structural sociology" (or "structural sociological theories") across all theoretical introductions, substantive framing, and discussion sections.
 
 ### 5. Exhaustive Replication Audit Against Social Signatures.pptx
 Every slide, figure, and empirical study from Matthew Chandler's 26-slide presentation (May 7, 2019) has been comprehensively replicated and extended:
