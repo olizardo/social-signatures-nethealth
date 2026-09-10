@@ -181,6 +181,15 @@ What psychological dispositions generate steep (core-concentrated) versus flat (
 {{FIGURE_7}}
 **Figure 7.** Personality Predictors of Social Signature Alpha
 
+### 4.6 Non-Linear Thresholds and Moderation: CART Regression Tree
+While linear regression tests parametric main effects, it assumes strictly additive relationships. To uncover non-linear thresholds and psychological trait interactions, we trained a Classification and Regression Tree (CART; Breiman et al. 1984) predicting mean power-law decay exponents (*α~i~*) from baseline Big Five traits (Figure 7B):
+- **Relative Variable Importance**: Negative Emotionality dominates the tree architecture (49%), followed by Extraversion (19%), Openness (16%), Agreeableness (13%), and Conscientiousness (2%).
+- **Primary Root Split (Negative Emotionality < 2.44)**: Individuals in the lowest third of Negative Emotionality form an immediate terminal leaf characterized by flat, egalitarian signatures (mean *α* = 1.121).
+- **Extraversion as a Conditional Buffer**: For individuals with elevated Negative Emotionality (>= 2.44), the tree branches conditionally on Extraversion (< 2.56 vs. >= 2.56). Introverted individuals with high Negative Emotionality exhibit extreme relational concentration (mean *α* = 1.322), rising to *α* = 1.392 when Agreeableness is high. Conversely, moderate-to-high Extraversion buffers against hyper-concentration (mean *α* = 1.223), explaining why Extraversion showed no linear main effect in OLS regression.
+
+{{FIGURE_7B}}
+**Figure 7B.** CART Decision Tree Predicting Social Signature Alpha from Big Five Traits
+
 ---
 
 ## 5. Discussion and Conclusion

@@ -489,6 +489,19 @@ Personal Network Degree & $-0.004^\dagger$ & 0.002 & $-1.76$ & 0.080 \\
 \label{fig:personality}
 \end{figure}
 
+While linear regression provides an omnibus test of parametric associations, it assumes additive relationships that may overlook non-linear thresholds or complex psychological interactions. To uncover the hierarchical structure governing attention concentration, we trained a regression tree (Classification and Regression Tree; CART; \citealt{breiman1984classification}) predicting mean power-law decay exponents ($\alpha_i$) from baseline Big Five traits (Figure~\ref{fig:cart_tree}). 
+
+The CART model confirms the primacy of Negative Emotionality while uncovering a critical moderating role for Extraversion. Variable importance diagnostics assign 49\% of relative predictive power to Negative Emotionality, followed by Extraversion (19\%), Openness (16\%), Agreeableness (13\%), and Conscientiousness (2\%). The primary root split bifurcates the cohort on Negative Emotionality at a cutoff of 2.44 (distinguishing the bottom tertile from the rest of the sample). Participants with low Negative Emotionality ($< 2.44$, $n = 98$) form an immediate terminal leaf characterized by flat, egalitarian attention distributions ($\bar{\alpha} = 1.121$).
+
+Among individuals with elevated Negative Emotionality ($\ge 2.44$, $n = 192$), the tree splits conditionally on Extraversion at a threshold of 2.56. Introverted individuals with high Negative Emotionality (Extraversion $< 2.56$, $n = 40$) exhibit extreme relational concentration ($\bar{\alpha} = 1.322$). Within this vulnerable subset, those who are also high in Agreeableness ($\ge 3.61$, $n = 20$) direct communication almost exclusively into a solitary confidant, producing the highest decay exponents observed in the cohort ($\bar{\alpha} = 1.392$). Conversely, moderate-to-high Extraversion ($\ge 2.56$, $n = 152$) acts as a psychological buffer against hyper-concentration ($\bar{\alpha} = 1.223$), keeping attention more evenly distributed across contacts unless Negative Emotionality reaches severe levels ($\ge 3.06$, $\bar{\alpha} = 1.265$--$1.326$). This non-linear buffering dynamic resolves why Extraversion showed no linear main effect in OLS modeling: its influence operates conditionally as a protective moderator among emotionally reactive individuals rather than as an independent main effect.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{Plots/fig08_cart_decision_tree.png}
+\caption{Classification and Regression Tree (CART) Predicting Social Signature Power-Law Alpha ($\alpha_i$) from Big Five Personality Traits ($N = 290$). Node boxes display predicted mean $\alpha_i$ (top) and sample size (bottom), colored along a blue-to-red gradient from flat/egalitarian to steep/concentrated allocation profiles.}
+\label{fig:cart_tree}
+\end{figure}
+
 \section{Discussion}
 
 By linking continuous passive smartphone logs with multi-wave sociocentric surveys and psychological batteries in the NetHealth cohort, this study provides empirical backing for social signature theory while advancing the paradigm into structural sociology and computational psychology. The findings resolve long-standing theoretical puzzles regarding the interplay between relational fluidity and cognitive constraint across life transitions.

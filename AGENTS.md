@@ -1050,7 +1050,8 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 - **Figure 7**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 0.0001$) (`Plots/fig06_turnover_vs_stability.png`)
 - **Table 6**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
 - **Table 7**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
-- **Figure 8**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 stratified by Negative Emotionality tertiles with a multi-row legend, showing high Negative Emotionality individuals allocate 31.7% to Rank 1 vs. 25.3% for low Negative Emotionality peers; Extraversion removed) (`Plots/fig07_personality_signature_effects.png`)
+- **Figure 8**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 contrasting high vs. low Negative Emotionality extremes) (`Plots/fig07_personality_signature_effects.png`)
+- **Figure 9**: Classification and Regression Tree (CART) Predicting Social Signature Power-Law Alpha ($\alpha_i$) from Big Five Personality Traits (`Plots/fig08_cart_decision_tree.png`)
 
 ### 6. Directory Structure & Asset Taxonomy
 ```
