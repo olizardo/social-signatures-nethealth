@@ -20,21 +20,21 @@ In a foundational contribution, Saramäki et al. (2014) operationalized this rel
 
 Despite these important empirical breakthroughs, significant theoretical and empirical gaps remain in our understanding of personal communication architectures. First, existing studies have relied primarily on call logs from commercial telecommunications providers. Because commercial telecommunications data lack relational content, researchers have been unable to determine whether the steep mathematical drop-off in communication frequency corresponds to qualitative differences in social support—such as emotional comfort, instrumental advice, companionship, or financial assistance. Second, the behavioral mechanisms underlying signature persistence remain ambiguous: does an individual's signature remain stable because their core ties are immutable, or do individuals actively preserve their structural signature by "slotting" newly acquired alters into vacant relational positions? Third, prior research has largely neglected the psychological dispositions and well-being correlates that give rise to distinct signature shapes. Why do some individuals maintain steep, hyper-concentrated communication profiles focused on a single alter, while others sustain broad, egalitarian distributions of attention?
 
-This paper addresses these foundational questions by drawing on the **NetHealth Project**—a comprehensive, multi-year cohort study tracking undergraduate students at the University of Notre Dame. By integrating two full years of continuous, passive smartphone communication logs (498,237 outgoing voice call records) with dense 8-wave sociocentric network surveys, alter-alter structural edge lists, and longitudinal psychometric batteries, we examine the persistence, mathematical form, social support grounding, and psychological origins of social signatures during a major life-course transition.
+This paper addresses these foundational questions by drawing on the **NetHealth Project**—a comprehensive, multi-year cohort study tracking undergraduate students at the University of Notre Dame. By integrating two full years of continuous, passive smartphone communication logs (498,237 outgoing voice call records) with dense 8-wave ego-network surveys, alter-alter structural edge lists, and longitudinal psychometric batteries, we examine the persistence, mathematical form, social support grounding, and psychological origins of social signatures during a major life-course transition.
 
 ---
 
 ## 2. Data and Methodology
 
 ### 2.1 The NetHealth Dataset
-The NetHealth study recruited an entire incoming cohort of first-year undergraduate students at the University of Notre Dame beginning in Fall 2015. Participants consented to continuous digital sensing via their smartphones and Fitbit devices, alongside dense sociocentric network and psychological surveys administered at regular intervals across their college careers. 
+The NetHealth study recruited an entire incoming cohort of first-year undergraduate students at the University of Notre Dame beginning in Fall 2015 (comprehensive documentation and study protocols are available at the project website: https://sites.nd.edu/nethealth/). Participants consented to continuous digital sensing via their smartphones and Fitbit devices, alongside dense ego-network and psychological surveys administered at regular intervals across their college careers. 
 
 Our analytical design links five primary data streams:
 1. **Continuous Communication Logs**: 498,237 outgoing voice call events collected from participant iOS devices spanning June 30, 2015 through July 2, 2017 across 491 unique egos.
 2. **Academic Calendar**: Comprehensive institutional records documenting semester start and end dates, examination periods, orientation, and vacation breaks.
-3. **Sociocentric Network Surveys**: 35,913 alter nominations gathered across 8 longitudinal survey waves recording tie categories (family kin vs. peer friends), perceived closeness, interpersonal trust, and multidimensional social support.
+3. **Ego-Network Surveys**: 35,913 alter nominations gathered across 8 longitudinal survey waves recording tie categories (family kin vs. peer friends), perceived closeness, interpersonal trust, and multidimensional social support.
 4. **Alter-Alter Edge Lists**: 174,748 structural ties connecting peers within each respondent's personal egocentric network across survey waves.
-5. **Basic Psychometric Batteries**: Longitudinal survey instruments measuring the Big Five personality dimensions (Extraversion, Agreeableness, Conscientiousness, Negative Emotionality [historically termed Neuroticism], Openness), the CES-D Depression Scale, and the UCLA Loneliness Scale.
+5. **Basic Psychometric Batteries**: Longitudinal survey instruments measuring the Big Five personality dimensions (Extraversion, Agreeableness, Conscientiousness, Negative Emotionality [historically termed Neuroticism], Openness).
 
 ### 2.2 Temporal Window Binning and Filtering
 To establish whether social signatures persist across differing temporal resolutions, we construct two complementary binning architectures:
@@ -194,14 +194,14 @@ While linear regression tests parametric main effects, it assumes strictly addit
 
 ## 5. Discussion and Conclusion
 
-By linking continuous passive smartphone logs with multi-wave sociocentric surveys and psychological batteries in the NetHealth cohort, this study provides definitive empirical backing for social signature theory while advancing the paradigm into sociological and psychological domains.
+By linking continuous passive smartphone logs with multi-wave ego-network surveys and psychological batteries in the NetHealth cohort, this study provides definitive empirical backing for social signature theory while advancing the paradigm into sociological and psychological domains.
 
 Our key findings are threefold:
 1. **Unambiguous Persistence**: Social signatures in NetHealth are robustly persistent across timescales ranging from 3-week rolling windows to multi-year academic terms. An individual's signature divergence across time is less than half the divergence observed between random peers.
 2. **Substantive Grounding**: Social signature ranks are not arbitrary artifacts of call logging; they map directly to evolutionary Dunbar tiers. Rank 1 represents a specialized kin-based support hub, Ranks 2–5 represent the core emotional confidant circle, and ranks beyond 5 represent peer-based companionship.
 3. **The Psychological Signature**: The shape of the social signature is anchored in personality. Elevated negative emotionality drives individuals to adopt steep, risk-averse, hyper-concentrated allocation strategies, while agreeable individuals and those low in negative emotionality allocate attention across broader social circles.
 
-Future research should leverage high-resolution wearable sensing (Fitbit physical activity, sleep regularity, and colocation traces) to examine whether disruptions in social signature equilibrium serve as early-warning biomarkers for loneliness, academic distress, and depressive episodes during major life transitions.
+Future research should leverage high-resolution wearable sensing (Fitbit physical activity, sleep regularity, and colocation traces) to examine whether disruptions in social signature equilibrium serve as early-warning biomarkers for academic distress and psychological strain during major life transitions.
 
 ---
 

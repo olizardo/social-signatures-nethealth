@@ -989,7 +989,19 @@ project/
 - **Collaborative Google Doc URL:** https://docs.google.com/document/d/1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o
 - **Collaborative Google Doc ID:** `1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o`
 - **Data Sources:** NetHealth Study (University of Notre Dame, continuous smartphone sensing and longitudinal surveys, 2015–2017: https://sites.nd.edu/nethealth/).
-- **Primary Analytic Sample:** $N = 491$ egos, 498,237 outgoing iOS voice calls spanning June 30, 2015 through July 2, 2017, linked to 8 sociocentric network survey waves ($N = 35,913$ alter nominations), complete alter-alter structural edge lists ($174,748$ ties), and longitudinal psychometric batteries ($N = 722$ egos).
+- **Sample Size Architecture & Analytical Funnel:**
+  - *Full Digital Sensing Pool:* $N = 491$ unique egos, 498,237 outgoing iOS voice calls spanning June 30, 2015 through July 2, 2017 (reported in Abstract and Section 3.1).
+  - *Timescale Compliance Filtering ($\ge 2$ alters, $> 10$ calls per window):*
+    - Academic Years ($W = 2$): $N = 388$ eligible egos.
+    - Collegiate Semesters ($W = 4$): $N = 290$ eligible egos (**Core Analytical Cohort** for all longitudinal, dyadic, and psychological modeling).
+    - Academic Quarters ($W = 8$): $N = 227$ eligible egos.
+    - Calendar Months ($W = 24$): $N = 147$ eligible egos.
+    - Common Calendar Cohort: $N = 147$ egos (present across all four calendar definitions simultaneously).
+    - 3-Week Rolling Windows ($W = 102$): $N = 88$ eligible egos.
+    - 2-Week Discrete Windows ($W = 52$): $N = 65$ eligible egos.
+  - *Dyadic Call-to-Survey Linkage Sample (Table 4 & Figure 5):* $N = 13,174$ call-ranked dyadic observations across 283 unique egos matched to 8 waves of ego-network surveys ($35,913$ alter nominations; 7 egos in the 290 cohort had no survey alter nominations).
+  - *Complete-Case Dyadic Mixed-Effects Sample (Table 5 & Figure 6):* $N = 10,828$ dyad observations across $J = 280$ unique egos with complete data on subjective closeness, tie duration, cognitive salience, and trust (3 egos had survey item non-response).
+  - *Longitudinal Panel & Personality Models (Tables 6 & 7):* $N = 290$ egos (870 semester-to-semester transitions) with complete baseline Big Five psychometrics and estimated decay parameters.
 
 ### 2. Theoretical Lineage & Empirical Grounding (Literature Review Synthesis)
 The project synthesizes and advances a decade of multidisciplinary research building on the social signatures framework coined by \citet{saramaeki2014persistence}:
@@ -1013,20 +1025,21 @@ The project synthesizes and advances a decade of multidisciplinary research buil
 
 ### 3. Five Open Frontiers Addressed and Resolved by NetHealth
 1. **The "Content Black Box" & Social Support Grounding**:
-   - *The Gap*: Prior work relied exclusively on telecommunications metadata devoid of relational content, leaving open whether rank order reflects mere call frequency or qualitative functional specialization.
-   - *NetHealth Resolution*: Links $N = 13,174$ call-ranked dyads to longitudinal sociocentric surveys recording multidimensional social support. Rank 1 is a specialized kinship-dominated support hub (69.7\% family, 85.4\% emotional support, 87.6\% advice, 64.1\% financial aid), transitioning to sympathy groups (Ranks 2--3: 62.2\% kin, 77.1\% emotional support), peer friendship dominance (Ranks 4--5: 56.9\% friends; Ranks $>20$: 87.8\% friends), while companionship remains sustained across all tiers ($>69\%$).
+   - *The Gap*: Prior work relied exclusively on telecommunications metadata devoid of relational content, leaving open whether rank order reflects mere call frequency or qualitative specialization in social support.
+   - *NetHealth Resolution*: Links $N = 13,174$ call-ranked dyads to longitudinal ego-network surveys recording multidimensional social support. Rank 1 is a specialized kinship-dominated support hub (69.7\% family, 85.4\% emotional support, 87.6\% advice, 64.1\% financial aid), transitioning to sympathy groups (Ranks 2--3: 62.2\% kin, 77.1\% emotional support), peer friendship dominance (Ranks 4--5: 56.9\% friends; Ranks $>20$: 87.8\% friends), while companionship remains sustained across all tiers ($>69\%$). Furthermore, signature slots strongly track subjective closeness ($r = -0.222, p < 0.0001$), tie duration ($r = -0.266, p < 0.0001$), and cognitive recall salience ($r = +0.243, p < 0.0001$).
 2. **Direct Empirical Verification of the Slot-Filling Mechanism**:
    - *The Gap*: Previous studies hypothesized slot-filling under alter turnover, but could not test whether stability survives complete replacement of the primary alter versus alter retention.
    - *NetHealth Resolution*: Across eight semesters with 80.1\% average alter turnover, we separate transitions where the top alter (Rank 1) is retained from those where Rank 1 is completely replaced. Even when Rank 1 is replaced, self-divergence increases only marginally (from 0.043 to 0.078), providing direct empirical proof of the slot-filling mechanism.
-3. **Psychological Foundations of Signature Curvature**:
+3. **Psychological Foundations of Signature Curvature (OLS & CART Decision Tree)**:
    - *The Gap*: Theoretical models hypothesize that internal cognitive traits drive alter-preferentiality, but commercial CDRs possess zero psychometrics.
-   - *NetHealth Resolution*: Econometric regression of objective power-law decay exponents ($\alpha_i$) on longitudinal Big Five personality traits, CES-D depression, and UCLA loneliness scores shows that **Negative Emotionality strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, t = 5.08, p = 6.96 \times 10^{-7}$)**, whereas Extraversion displays no statistically significant effect ($t = -1.01, p = 0.314$).
+   - *NetHealth Resolution*: Econometric regression of objective power-law decay exponents ($\alpha_i$) on longitudinal Big Five personality traits shows that **Negative Emotionality strongly predicts steeper, hyper-concentrated signatures ($\beta = 0.098, t = 5.08, p < 0.0001$)**, whereas Extraversion displays no statistically significant linear main effect ($t = -1.01, p = 0.314$).
+   - *CART Regression Tree Resolution*: A regression tree (`rpart`) uncovers non-linear interactions: Negative Emotionality forms the primary root split at $< 2.44$ (49\% of tree importance; $\bar{\alpha} = 1.121$ for low scorers). For elevated Negative Emotionality ($\ge 2.44$), Extraversion operates as a non-linear conditional moderator ($< 2.56$ vs. $\ge 2.56$): introverts with high Negative Emotionality exhibit extreme relational concentration ($\bar{\alpha} = 1.322$, climbing to $1.392$ if high in Agreeableness), while moderate-to-high Extraversion buffers against hyper-concentration ($\bar{\alpha} = 1.223$).
 4. **Multi-Timescale Hierarchy and Parameter Burn-In Convergence**:
    - *The Gap*: Prior work examined arbitrary, isolated observation windows (1 month, 6 months, 9 months) without establishing how long an ego must be observed for parameter estimates to stabilize.
    - *NetHealth Resolution*: Evaluates signatures across eight temporal window schemes (from 1-week discrete windows to full academic years) and tracks cumulative parameter stability from 2 to 24 months, showing that estimated decay exponents stabilize asymptotically within 6 to 8 months.
-5. **Sociocentric Structural Embedding and Multilevel Panel Dynamics**:
+5. **Personal Network Embedding and Multilevel Panel Dynamics**:
    - *The Gap*: Egocentric communication has traditionally been modeled in isolation from the alters' own structural ties.
-   - *NetHealth Resolution*: Embeds communication logs within the complete sociocentric graph ($174,748$ alter-alter structural ties), estimating multilevel linear mixed-effects models that show alter turnover ($\beta = 0.351, p < 10^{-15}$) and volume shifts ($\beta = 0.0014, p < 10^{-10}$) drive temporal stability, while local network clustering does not alter stability net of turnover.
+   - *NetHealth Resolution*: Embeds communication logs within the complete personal network graph ($174,748$ alter-alter structural ties), estimating multilevel linear mixed-effects models that show alter turnover ($\beta = 0.351, p < 0.0001$) and volume shifts ($\beta = 0.0014, p < 0.0001$) drive temporal stability, while local ego network clustering does not alter stability net of turnover.
 
 ### 4. Canonical NetHealth Study Citations (Representing All Primary PIs)
 Any manuscript revision, grant submission, or documentation referencing the NetHealth Study must cite the foundational project publications representing the primary PIs (David Hachen, Omar Lizardo, Christian Poellabauer, Aaron Striegel, Tijana Milenković, and Nitesh Chawla):
@@ -1045,13 +1058,13 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 - **Figure 4**: Parameter Burn-In Convergence Over 24 Months (`Plots/fig04_parameter_burnin.png`)
 - **Table 4**: Relational Composition and Social Support Dimensions Across Signature Rank Tiers ($N = 13,174$ Dyads) (`cache/table4_support_tiers.md`)
 - **Figure 5**: Dimensions of Social Support Across Signature Rank Tiers (High-contrast accessible color palette with zero light yellow; multi-row bottom legend) (`Plots/fig05_rank_by_support_tiers.png`)
-- **Figure 6**: Evaluative and Cognitive Alignment Across Social Signature Rank Tiers (3-panel visualization of subjective closeness, relationship duration, and cognitive recall salience) (`Plots/fig05b_closeness_duration_salience.png`)
-- **Table 5**: Multivariable Regressions Predicting Signature Allocation and Rank from Tie Attributes ($N = 10,828$ Dyads) (`cache/table4b_tie_regressions.md`)
+- **Figure 6**: Evaluative and Cognitive Alignment Across Social Signature Rank Tiers (3-panel visualization of subjective closeness, relationship duration, and cognitive recall salience with 35° angled x-axis labels) (`Plots/fig05b_closeness_duration_salience.png`)
+- **Table 5**: Linear Mixed-Effects Models Predicting Signature Allocation and Rank from Tie Attributes ($N = 10,828$ Dyads across 280 Egos; ego random intercepts, $\tau_{00}$, $\sigma^2$, $\text{ICC} = 0.109$) (`cache/table4b_tie_regressions.md`)
 - **Figure 7**: The 'Slot-Filling' Dynamic: Alter Turnover vs. Signature Divergence ($r = 0.456, p < 0.0001$) (`Plots/fig06_turnover_vs_stability.png`)
-- **Table 6**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) (`cache/table5_multilevel_models.md`)
-- **Table 7**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) (`cache/table6_personality_models.md`)
-- **Figure 8**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 contrasting high vs. low Negative Emotionality extremes) (`Plots/fig07_personality_signature_effects.png`)
-- **Figure 9**: Classification and Regression Tree (CART) Predicting Social Signature Power-Law Alpha ($\alpha_i$) from Big Five Personality Traits (`Plots/fig08_cart_decision_tree.png`)
+- **Table 6**: Multilevel Linear Mixed-Effects Models Predicting Signature Self-Divergence ($\JSD$) ($N = 290$ Egos, 870 transitions) (`cache/table5_multilevel_models.md`)
+- **Table 7**: Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$) ($N = 290$ Egos) (`cache/table6_personality_models.md`)
+- **Figure 8**: Negative Emotionality as a Driver of Egocentric Relational Concentration (Two-panel visualization centering on the statistically significant Negative Emotionality effect; Panel A: scatterplot and regression fit of $\alpha_i$ on Negative Emotionality; Panel B: mean signatures across ranks 1--10 directly contrasting high vs. low Negative Emotionality extremes [T3 vs. T1]) (`Plots/fig07_personality_signature_effects.png`)
+- **Figure 9**: Classification and Regression Tree (CART) Predicting Social Signature Power-Law Alpha ($\alpha_i$) from Big Five Personality Traits ($N = 290$, showing the primary root split on Negative Emotionality and conditional buffer of Extraversion) (`Plots/fig08_cart_decision_tree.png`)
 
 ### 6. Directory Structure & Asset Taxonomy
 ```
@@ -1097,6 +1110,24 @@ social-signatures-nethealth/
    - Use italics (`\textit{...}` or `\emph{...}`) instead of boldface for emphasizing terms, concepts, and key statistical statements in running text. Reserve boldface strictly for section titles and table column headers.
 6. **Avoidance of "Architecture" When Specific Terms Apply**:
    - Reserve the term "architecture" for overarching metaphorical titles; in running text, use precise terms: "binning schemes", "temporal definitions", "qualitative organization", "relational geometry", and "communication networks".
+7. **Negative Emotionality Terminology Standard (BFI-2)**:
+   - Strictly use **Negative Emotionality** instead of "Neuroticism" across all narrative prose, figure axes, legend labels, and regression table rows. Use descriptive phrases like "elevated negative emotionality" or "negative emotionality" rather than "emotional instability".
+8. **Full Term "Ego Network" (Zero "Egonet")**:
+   - Strictly use the full academic term **"ego network"** (or "egocentric network") rather than the colloquial abbreviation "egonet".
+9. **Dimensions of Social Support (Zero "Functional Support")**:
+   - Strictly use standard network theory terminology: **"dimensions of social support"** or **"social support"** rather than "functional support".
+10. **P-Value Formatting ($p < 0.0001$)**:
+    - Strictly avoid scientific notation for $p$-values in running prose and tables (e.g., avoid $10^{-12}$, $10^{-280}$, $10^{-44}$). Standardly format extreme statistical significance as **$p < 0.0001$**.
+11. **Hierarchical Nesting in Dyadic Models (Linear Mixed-Effects)**:
+    - When analyzing tie-level attributes (closeness, duration, trust, salience) predicting communication allocation across egos, always estimate linear mixed-effects models with ego random intercepts (`lme4::lmer(..., (1 | egoid))`) rather than pooled OLS. Personal ties are hierarchically nested within egos ($N = 10,828$ ties across $J = 280$ egos, $\text{ICC} = 0.109$). Always report fixed effects alongside random intercept variance ($\tau_{00}$), residual variance ($\sigma^2$), and the intraclass correlation (ICC).
+12. **Multi-Panel Categorical Tier Plot Sizing & Angled Labels**:
+    - On dense multi-panel plots displaying signature rank tiers horizontally across panels (such as Figure 6), always rotate x-axis tick labels by 35 degrees (`axis.text.x = element_text(angle = 35, hjust = 1, vjust = 1, size = 8.5)`) to eliminate label overlap.
+13. **"Ego-Network Surveys" Standard (Strictly Zero "Sociocentric Surveys")**:
+    - The NetHealth survey instruments measuring alters, relationship types (kin/friend), closeness, trust, and dimensions of social support are egocentric name generators administered to each participant about their personal ties. Strictly refer to them as **"ego-network surveys"** (or "egocentric surveys"), **never** as "sociocentric surveys".
+14. **Psychometric Measures Scope (Big Five Personality Only)**:
+    - Psychometric modeling in this project focuses strictly on validated **Big Five personality dimensions** (Extraversion, Agreeableness, Conscientiousness, Negative Emotionality, Openness). Do not cite or reference the CES-D Depression Scale or UCLA Loneliness Scale in the study design, model tables, or narrative conclusions, as they are not used in the empirical models.
+15. **NetHealth Study URL Reference**:
+    - Whenever referencing the institutional NetHealth study design and data collection protocols, always cite the canonical project website: `https://sites.nd.edu/nethealth/` (`\url{https://sites.nd.edu/nethealth/}`).
 
 ### 5. Exhaustive Replication Audit Against Social Signatures.pptx
 Every slide, figure, and empirical study from Matthew Chandler's 26-slide presentation (May 7, 2019) has been comprehensively replicated and extended:
