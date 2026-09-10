@@ -303,16 +303,16 @@ p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
   ) +
   theme_nethealth()
 
-# Panel B: Signatures by Negative Emotionality Tertile
+# Panel B: Signatures by Negative Emotionality Extremes (High vs Low)
 ego_covars <- ego_covars %>%
   mutate(
     neuro_tertile = ntile(neuroticism, 3),
-    neuro_group = factor(neuro_tertile, levels = 1:3,
-                         labels = c("Low Neg. Emotionality (T1)", "Moderate (T2)", "High Neg. Emotionality (T3)"))
+    neuro_group = factor(neuro_tertile, levels = c(1, 3),
+                         labels = c("Low Negative Emotionality (T1)", "High Negative Emotionality (T3)"))
   )
 
 sem_sigs <- sig_data$semester$sig_dt
-sem_merged <- merge(sem_sigs, ego_covars[, c("egoid", "neuro_group")], by = "egoid")
+sem_merged <- merge(sem_sigs, ego_covars[!is.na(ego_covars$neuro_group), c("egoid", "neuro_group")], by = "egoid")
 
 rows <- list()
 for (i in 1:nrow(sem_merged)) {
@@ -337,21 +337,19 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
   geom_ribbon(aes(ymin = mean_prop - 1.96 * se_prop, ymax = mean_prop + 1.96 * se_prop),
               alpha = 0.15, color = NA) +
   geom_line(linewidth = 1.1) +
-  geom_point(size = 2.2) +
+  geom_point(size = 2.4) +
   scale_x_continuous(breaks = 1:10) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_color_manual(values = c("Low Neg. Emotionality (T1)" = "#2166ac",
-                                "Moderate (T2)" = "#67a9cf",
-                                "High Neg. Emotionality (T3)" = "#b2182b"),
-                     name = "Negative Emotionality Group:") +
-  scale_fill_manual(values = c("Low Neg. Emotionality (T1)" = "#2166ac",
-                               "Moderate (T2)" = "#67a9cf",
-                               "High Neg. Emotionality (T3)" = "#b2182b"),
-                    name = "Negative Emotionality Group:") +
-  guides(color = guide_legend(nrow = 2, byrow = TRUE), 
-         fill  = guide_legend(nrow = 2, byrow = TRUE)) +
+  scale_color_manual(values = c("Low Negative Emotionality (T1)" = "#2166ac",
+                                "High Negative Emotionality (T3)" = "#b2182b"),
+                     name = "Negative Emotionality:") +
+  scale_fill_manual(values = c("Low Negative Emotionality (T1)" = "#2166ac",
+                               "High Negative Emotionality (T3)" = "#b2182b"),
+                    name = "Negative Emotionality:") +
+  guides(color = guide_legend(nrow = 1, byrow = TRUE), 
+         fill  = guide_legend(nrow = 1, byrow = TRUE)) +
   labs(
-    title = "(B) Mean Signatures by Negative Emotionality Tertile",
+    title = "(B) Signatures for High vs. Low Extremes",
     x = "Alter Rank (1\u201310)",
     y = "Proportion of Outgoing Calls"
   ) +

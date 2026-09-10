@@ -370,11 +370,11 @@ First, subjective closeness exhibits a steep monotonic gradient across signature
 \label{fig:tie_evaluative}
 \end{figure}
 
-To evaluate whether these relational attributes exert independent effects on signature placement, Table~\ref{tab:tie_regressions} estimates nested multivariable regressions across $N = 10,828$ complete dyadic observations. In Model~1, subjective closeness and interpersonal trust account for 7.5\% of the variance in communication allocation proportion ($F = 436.2, p < 0.0001$). Adding tie duration in Model~2 doubles the explained variance to 15.1\% ($t = 31.2, p < 0.0001$), confirming that relationship longevity strongly anchors communication investment net of perceived closeness. Model~3 adds cognitive salience ($26 - \text{recall order}$), further increasing the explained variance to 20.1\% ($F = 682.5, p < 0.0001$), with tie duration ($\beta = +0.306$), cognitive salience ($\beta = +0.255$), interpersonal trust ($\beta = +0.060$), and subjective closeness ($\beta = +0.050$) each retaining highly significant positive effects ($p < 0.001$). Finally, Model~4 demonstrates that these attributes jointly predict an alter's ordinal signature rank ($R^2 = 0.144, F = 455.8, p < 0.0001$), with greater closeness ($t = -7.06$), longer duration ($t = -25.67$), and higher cognitive salience ($t = -22.81$) each pulling alters closer to the primary core slot (Rank~1). Thus, communication rank slots do not merely reflect raw call volume; they represent the behavioral manifestation of deeply rooted cognitive salience, historical duration, and emotional intimacy.
+Because personal ties are hierarchically nested within egos ($N = 10,828$ dyadic observations across $J = 280$ individuals, averaging 38.7 ties per ego), pooled regression risks inflating test statistics due to correlated errors across alters belonging to the same participant. Table~\ref{tab:tie_regressions} therefore estimates linear mixed-effects models with ego random intercepts to properly partition between-ego and within-ego variance. In the baseline evaluative model (Model~1), the ego-level intraclass correlation (ICC) is 0.109, indicating that roughly 11\% of the variance in communication allocation reflects unobserved ego-level baselines (e.g., overall calling volume and network size). Substantively, subjective closeness ($t = 15.07, p < 0.0001$) and interpersonal trust ($t = 14.41, p < 0.0001$) strongly predict calling proportion. Adding tie duration in Model~2 confirms that relationship longevity exerts a powerful independent effect ($t = 27.95, p < 0.0001$), absorbing nearly a third of the between-ego variance. Model~3 incorporates cognitive salience ($26 - \text{recall order}$), demonstrating that top-of-mind recall accessibility further drives communication volume ($t = 23.47, p < 0.0001$), while tie duration ($t = 30.26$), closeness ($t = 4.73$), and trust ($t = 6.95$) each retain highly significant positive effects. Finally, Model~4 shows that these attributes jointly govern an alter's ordinal signature position ($p < 0.0001$), with greater closeness, longevity, and recall salience each pulling alters closer to the primary core slot (Rank~1). Thus, communication rank slots do not merely reflect raw call volume; they represent the behavioral manifestation of deeply rooted cognitive salience, historical duration, and emotional intimacy.
 
 \begin{table}[htbp]
 \centering
-\caption{Multivariable Regressions Predicting Signature Allocation and Rank from Tie Attributes ($N = 10,828$ Dyads)}
+\caption{Linear Mixed-Effects Models Predicting Signature Allocation and Rank from Tie Attributes ($N = 10,828$ Dyads across 280 Egos)}
 \label{tab:tie_regressions}
 \small
 \resizebox{\textwidth}{!}{%
@@ -382,16 +382,18 @@ To evaluate whether these relational attributes exert independent effects on sig
 \toprule
 \textbf{Predictor Term} & \textbf{Model 1 (Evaluative)} & \textbf{Model 2 (+ Duration)} & \textbf{Model 3 (+ Salience)} & \textbf{Model 4 (Full Rank)} \\
 \midrule
-Intercept & $-0.1470^{***}\ (0.0071)$ & $-0.1016^{***}\ (0.0070)$ & $-0.1252^{***}\ (0.0068)$ & $43.6720^{***}\ (1.2609)$ \\
-Subjective Closeness (1--4) & $0.0356^{***}\ (0.0023)$ & $0.0249^{***}\ (0.0022)$ & $0.0093^{***}\ (0.0023)$ & $-2.9506^{***}\ (0.4182)$ \\
-Interpersonal Trust (1--10) & $0.0086^{***}\ (0.0007)$ & $0.0046^{***}\ (0.0007)$ & $0.0038^{***}\ (0.0007)$ & $0.0205\ (0.1309)$ \\
-Tie Duration (Years) & -- & $0.0036^{***}\ (0.0001)$ & $0.0037^{***}\ (0.0001)$ & $-0.5386^{***}\ (0.0210)$ \\
-Cognitive Salience ($26 - \text{Order}$) & -- & -- & $0.0048^{***}\ (0.0002)$ & $-0.7815^{***}\ (0.0343)$ \\
+Intercept & $-0.1787^{***}\ (0.0078)$ & $-0.1243^{***}\ (0.0077)$ & $-0.1417^{***}\ (0.0074)$ & $47.0176^{***}\ (1.3673)$ \\
+Subjective Closeness (1--4) & $0.0374^{***}\ (0.0025)$ & $0.0274^{***}\ (0.0024)$ & $0.0115^{***}\ (0.0024)$ & $-4.2135^{***}\ (0.4423)$ \\
+Interpersonal Trust (1--10) & $0.0122^{***}\ (0.0008)$ & $0.0071^{***}\ (0.0008)$ & $0.0056^{***}\ (0.0008)$ & $-0.1429\ (0.1466)$ \\
+Tie Duration (Years) & -- & $0.0034^{***}\ (0.0001)$ & $0.0035^{***}\ (0.0001)$ & $-0.4804^{***}\ (0.0212)$ \\
+Cognitive Salience ($26 - \text{Order}$) & -- & -- & $0.0047^{***}\ (0.0002)$ & $-0.6922^{***}\ (0.0363)$ \\
 \midrule
 Dependent Variable & Call Proportion ($p$) & Call Proportion ($p$) & Call Proportion ($p$) & Signature Rank ($r$) \\
-Observations & 10,828 & 10,828 & 10,828 & 10,828 \\
-$R^2$ & 0.075 & 0.151 & 0.201 & 0.144 \\
-$F$ Statistic & $436.2^{***}$ & $641.0^{***}$ & $682.5^{***}$ & $455.8^{***}$ \\
+Dyadic Observations & 10,828 & 10,828 & 10,828 & 10,828 \\
+Ego Clusters & 280 & 280 & 280 & 280 \\
+Ego Random Variance ($\tau_{00}$) & 0.00092 & 0.00061 & 0.00042 & 24.49 \\
+Residual Variance ($\sigma^2$) & 0.00752 & 0.00707 & 0.00678 & 217.10 \\
+Intraclass Correlation (ICC) & 0.109 & 0.079 & 0.058 & 0.101 \\
 \bottomrule
 \multicolumn{5}{l}{\footnotesize Standard errors in parentheses. $^{***}p < 0.0001$, $^{**}p < 0.01$, $^*p < 0.05$.}
 \end{tabular}%
@@ -478,12 +480,12 @@ Personal Network Degree & $-0.004^\dagger$ & 0.002 & $-1.76$ & 0.080 \\
 \end{tabular}
 \end{table}
 
-\textit{Negative Emotionality is a strong and statistically significant positive predictor of signature steepness ($\beta = 0.098, t = 5.08, p < 0.0001$)}. As shown in Figure~\ref{fig:personality}A, individuals higher in baseline Negative Emotionality exhibit systematically steeper power-law decay exponents, funneling a larger proportion of their communication into one or two primary alters while under-investing in intermediate and outer tiers. To illustrate how this parametric shift translates into actual relational behavior, Figure~\ref{fig:personality}B plots empirical social signatures across alter ranks 1 through 10 stratified by Negative Emotionality tertiles. Students in the highest Negative Emotionality tertile (T3) direct an average of 31.7\% of all outgoing calls to their single top alter (and 15.7\% to Rank 2), compared to 25.3\% at Rank 1 (and 13.0\% at Rank 2) for students in the lowest tertile (T1). In contrast, extraversion displays no statistically significant association with decay steepness ($\beta = -0.017, t = -1.01, p = 0.314$), indicating that outgoing sociability does not alter the fundamental curvature of personal attention allocation. Agreeableness exhibits a modest positive association with concentration ($\beta = 0.063, p = 0.014$), while conscientiousness and openness show no detectable effects.
+\textit{Negative Emotionality is a strong and statistically significant positive predictor of signature steepness ($\beta = 0.098, t = 5.08, p < 0.0001$)}. As shown in Figure~\ref{fig:personality}A, individuals higher in baseline Negative Emotionality exhibit systematically steeper power-law decay exponents, funneling a larger proportion of their communication into one or two primary alters while under-investing in intermediate and outer tiers. To illustrate how this parametric shift translates into actual relational behavior, Figure~\ref{fig:personality}B plots empirical social signatures across alter ranks 1 through 10 contrasting students in the high versus low Negative Emotionality extremes (T3 vs.\ T1). Students in the high Negative Emotionality group (T3) direct an average of 31.7\% of all outgoing calls to their single top alter (and 15.7\% to Rank 2), compared to 25.3\% at Rank 1 (and 13.0\% at Rank 2) for students in the low Negative Emotionality group (T1). In contrast, extraversion displays no statistically significant association with decay steepness ($\beta = -0.017, t = -1.01, p = 0.314$), indicating that outgoing sociability does not alter the fundamental curvature of personal attention allocation. Agreeableness exhibits a modest positive association with concentration ($\beta = 0.063, p = 0.014$), while conscientiousness and openness show no detectable effects.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{Plots/fig07_personality_signature_effects.png}
-\caption{Negative Emotionality as a Driver of Egocentric Relational Concentration. (A) Scatterplot and linear regression of mean power-law decay exponent ($\alpha_i$) on baseline Negative Emotionality score ($\beta = 0.098, t = 5.08, p < 0.0001, R^2 = 0.112$), showing that individuals higher in negative emotionality maintain systematically steeper decay profiles. (B) Mean empirical social signatures across alter ranks 1 through 10 stratified by Negative Emotionality tertiles, showing that individuals with high Negative Emotionality (T3) allocate over 31.7\% of all communication to their single primary alter, compared to 25.3\% for low Negative Emotionality peers (T1).}
+\caption{Negative Emotionality as a Driver of Egocentric Relational Concentration. (A) Scatterplot and linear regression of mean power-law decay exponent ($\alpha_i$) on baseline Negative Emotionality score ($\beta = 0.098, t = 5.08, p < 0.0001, R^2 = 0.112$), showing that individuals higher in negative emotionality maintain systematically steeper decay profiles. (B) Mean empirical social signatures across alter ranks 1 through 10 contrasting high versus low Negative Emotionality extremes (T3 vs.\ T1), showing that individuals with high Negative Emotionality allocate over 31.7\% of all communication to their single primary alter, compared to 25.3\% for low Negative Emotionality peers.}
 \label{fig:personality}
 \end{figure}
 

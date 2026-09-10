@@ -146,10 +146,10 @@ Beyond discrete provisions of social support, an alter's position slot in the so
 {{FIGURE_5B}}
 **Figure 5B.** Evaluative and Cognitive Alignment Across Social Signature Rank Tiers
 
-To test whether these dimensions independently predict signature placement, Table 4B reports nested multivariable regressions across *N* = 10,828 complete dyadic observations. Adding tie duration to evaluative closeness doubles explained variance from 7.5% to 15.1% (*p* < 0.0001), and adding cognitive salience further elevates *R*^2^ to 20.1% (*F* = 682.5, *p* < 0.0001). In Model 4, all three dimensions significantly predict an alter's ordinal signature rank (*R*^2^ = 0.144, *p* < 0.0001).
+To test whether these dimensions independently predict signature placement while accounting for the nesting of alters within egos ($J = 280$ individuals, averaging 38.7 ties per ego), Table 4B reports linear mixed-effects models with ego random intercepts. In the baseline model, the ego-level intraclass correlation (ICC) is 0.109. Adding tie duration in Model 2 confirms that relationship longevity exerts a powerful independent effect on communication allocation ($t = 27.95, p < 0.0001$). Incorporating cognitive salience in Model 3 demonstrates that recall order further drives calling proportion ($t = 23.47, p < 0.0001$), with tie duration ($t = 30.26$), subjective closeness ($t = 4.73$), and interpersonal trust ($t = 6.95$) each maintaining highly significant positive effects. Finally, Model 4 confirms that these dimensions jointly predict an alter's ordinal signature rank ($p < 0.0001$), with greater closeness, longevity, and recall salience pulling alters closer to the Rank 1 core.
 
 {{TABLE_4B}}
-**Table 4B.** Multivariable Regressions Predicting Signature Allocation and Rank from Tie Attributes
+**Table 4B.** Linear Mixed-Effects Models Predicting Signature Allocation and Rank from Tie Attributes
 
 ### 4.3 The "Slot-Filling" Dynamic: Alter Turnover vs. Signature Stability
 A central theoretical puzzle in network science is how an ego's signature can remain stable despite frequent alter replacement. We calculated the dyadic Jaccard turnover (1 - *J*) between consecutive semesters.
