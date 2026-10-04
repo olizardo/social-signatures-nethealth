@@ -5,7 +5,7 @@
 # Description: Implements Chandler (2019) Slide 26:
 #              - Egonet topology: Density, Clustering/Transitivity, Modularity, Constraint
 #              - Alter turnover: Dyadic Jaccard similarity and turnover across windows
-#              - Activity dynamics: Delta activity, calls, and turnover interaction
+#              - Activity dynamics: Delta activity, pooled communication events, and turnover interaction
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -177,8 +177,8 @@ compute_turnover_df <- function(scheme_res, scheme_name) {
       turnover <- 1 - jaccard
       
       # Activity change
-      c1 <- sub$total_calls[t]
-      c2 <- sub$total_calls[t + 1]
+      c1 <- sub$total_events[t]
+      c2 <- sub$total_events[t + 1]
       delta_activity <- abs(c2 - c1)
       pct_activity_change <- abs(c2 - c1) / max(1, c1)
       
@@ -209,8 +209,8 @@ compute_turnover_df <- function(scheme_res, scheme_name) {
         alters_retained = inter,
         alters_added = length(setdiff(a2, a1)),
         alters_dropped = length(setdiff(a1, a2)),
-        calls_w1 = c1,
-        calls_w2 = c2,
+        events_w1 = c1,
+        events_w2 = c2,
         delta_activity = delta_activity,
         pct_activity_change = pct_activity_change,
         top1_retained = top1_retained,

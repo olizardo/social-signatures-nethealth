@@ -51,7 +51,7 @@ for (i in 1:nrow(sem_sig_dt)) {
     alterid = alts,
     rank = 1:k,
     proportion = props,
-    calls = wts
+    events = wts
   )
 }
 dyad_df <- bind_rows(dyad_rows)
@@ -80,7 +80,7 @@ alter_attr$alterid <- as.character(alter_attr$alterid)
 
 dyad_merged <- inner_join(dyad_df, alter_attr, by = c("egoid", "alterid"))
 
-cat(sprintf("Matched %s call-ranked dyads to survey nomination profiles.\n",
+cat(sprintf("Matched %s communication-ranked dyads to survey nomination profiles.\n",
             format(nrow(dyad_merged), big.mark = ",")))
 
 # Compute support proportions across rank tiers

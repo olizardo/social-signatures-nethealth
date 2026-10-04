@@ -33,3 +33,9 @@ __pycache__/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# Large raw/processed data artifacts (never commit - multi-GB)
+data/raw/CommEvents_full_2015_2019.csv.gz
+data/raw/CommEvents_outgoing_iphone_2015_2017.csv
+data/raw/download_full_events.log
+data/processed/call_windows.rds

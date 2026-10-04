@@ -141,22 +141,22 @@ cat(sprintf("  - Power-law preferred by AIC: %.1f%%\n", pct_pl_pref_mo))
 # ==============================================================================
 cat("\nAnalyzing parameter burn-in across cumulative observation windows...\n")
 windows_data <- readRDS("data/processed/call_windows.rds")
-calls_cal <- windows_data$calls_cal
+events_cal <- windows_data$events_cal
 common_egos <- windows_data$common_calendar_egos
 
 # For common cohort egos, calculate cumulative signatures from month 1 to month M (M = 1..24)
-all_months <- sort(unique(calls_cal$month))
+all_months <- sort(unique(events_cal$month))
 burnin_list <- list()
 
 for (m_idx in 2:length(all_months)) {
-  m_sub <- calls_cal[egoid %in% common_egos & month %in% all_months[1:m_idx]]
-  cum_agg <- m_sub[, .(calls = .N), by = .(egoid, alterid)]
+  m_sub <- events_cal[egoid %in% common_egos & month %in% all_months[1:m_idx]]
+  cum_agg <- m_sub[, .(events = .N), by = .(egoid, alterid)]
   
   # For each ego, compute signature and fit power law
   for (ego in common_egos) {
-    ego_calls <- cum_agg[egoid == ego, calls]
-    if (length(ego_calls) >= 3) {
-      sig <- compute_signature(ego_calls)
+    ego_events <- cum_agg[egoid == ego, events]
+    if (length(ego_events) >= 3) {
+      sig <- compute_signature(ego_events)
       fit <- fit_models_for_signature(sig)
       if (!is.null(fit)) {
         burnin_list[[length(burnin_list) + 1]] <- tibble(

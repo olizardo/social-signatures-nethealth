@@ -78,11 +78,13 @@ process_signatures_for_scheme <- function(dt, scheme_name, target_egos = NULL) {
   }
   
   # Compute signature and precalculate entropy for each ego-window
+  # NOTE: `events` pools all outgoing communication channels (calls, SMS,
+  # MMS, WhatsApp) as of the 2026 multichannel revision (see Script 01).
   sig_dt <- dt_work[, .(
-    signature = list(compute_signature(calls)),
-    alters = list(alterid[order(-calls)]),
-    weights = list(sort(calls, decreasing = TRUE)),
-    total_calls = sum(calls),
+    signature = list(compute_signature(events)),
+    alters = list(alterid[order(-events)]),
+    weights = list(sort(events, decreasing = TRUE)),
+    total_events = sum(events),
     deg = uniqueN(alterid)
   ), by = .(egoid, window)]
   

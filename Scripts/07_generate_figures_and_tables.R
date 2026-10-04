@@ -95,8 +95,8 @@ p1 <- ggplot(df_rank_summary, aes(x = rank, y = mean_prop, color = scheme, fill 
   ) +
   labs(
     title = "Empirical Social Signatures across Temporal Window Resolutions",
-    subtitle = "Ranked proportion of outgoing calls allocated to communication alters (Ranks 1–15)",
-    x = "Alter Rank (Descending Call Frequency)",
+    subtitle = "Ranked proportion of pooled outgoing communication events (calls, SMS, MMS, WhatsApp) allocated to alters (Ranks 1–15)",
+    x = "Alter Rank (Descending Communication Frequency)",
     y = "Proportion of Total Communication Effort",
     color = "Window Definition:",
     fill = "Window Definition:"
@@ -145,6 +145,7 @@ p2 <- ggplot(df_div_comp, aes(x = scheme, y = jsd, fill = divergence_type)) +
   theme_nethealth()
 
 ggsave("output/plots/fig02_self_vs_ref_divergence.png", p2, width = 8.5, height = 5.5, dpi = 300)
+ggsave("Plots/fig02_self_vs_ref_divergence.png", p2, width = 8.5, height = 5.5, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 3: Power-Law vs Exponential Models (Replication Slide 20, 24)
@@ -180,6 +181,7 @@ p3b <- ggplot(sem_models, aes(x = pl_alpha)) +
 
 p3 <- p3a + p3b
 ggsave("output/plots/fig03_power_law_vs_exponential.png", p3, width = 10, height = 4.8, dpi = 300)
+ggsave("Plots/fig03_power_law_vs_exponential.png", p3, width = 10, height = 4.8, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 4: Parameter Burn-In Convergence (Replication Slide 25)
@@ -209,6 +211,7 @@ p4 <- ggplot(conv_df, aes(x = cumulative_months)) +
   theme_nethealth()
 
 ggsave("output/plots/fig04_parameter_burnin.png", p4, width = 8.5, height = 5.2, dpi = 300)
+ggsave("Plots/fig04_parameter_burnin.png", p4, width = 8.5, height = 5.2, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 5: Support Tiers by Signature Rank (Expansion 1)
@@ -244,8 +247,8 @@ p5 <- ggplot(tier_long, aes(x = rank_tier, y = percent, group = dimension, color
   guides(color = guide_legend(nrow = 2, byrow = TRUE)) +
   labs(
     title = "Functional Grounding of Communication Ranks in Social Support Dimensions",
-    subtitle = "Survey-reported ties and support functions across call signature rank tiers (N = 13,174 dyads)",
-    x = "Call Signature Rank Tier",
+    subtitle = "Survey-reported ties and support functions across communication signature rank tiers",
+    x = "Communication Signature Rank Tier",
     y = "Prevalence Rate (%)",
     color = "Support / Relation:"
   ) +
@@ -279,6 +282,7 @@ p6 <- ggplot(sem_turnover, aes(x = turnover, y = self_jsd)) +
   theme_nethealth()
 
 ggsave("output/plots/fig06_turnover_vs_stability.png", p6, width = 8.5, height = 5.2, dpi = 300)
+ggsave("Plots/fig06_turnover_vs_stability.png", p6, width = 8.5, height = 5.2, dpi = 300)
 
 # ------------------------------------------------------------------------------
 # Figure 7: Personality & Signature Steepness (Expansion 3)
@@ -287,14 +291,26 @@ cat("Generating Figure 7: Personality Predictors of Signature Alpha...\n")
 ego_covars <- expansion_d$ego_param_covariates %>%
   filter(!is.na(neuroticism), !is.na(mean_alpha))
 
+# Bivariate fit (dynamically computed, not hardcoded) for the Panel A annotation
+biv_fit <- lm(mean_alpha ~ neuroticism, data = ego_covars)
+biv_sum <- summary(biv_fit)
+biv_beta <- coef(biv_fit)[2]; biv_se <- biv_sum$coefficients[2, 2]
+biv_t <- biv_sum$coefficients[2, 3]; biv_p <- biv_sum$coefficients[2, 4]
+biv_r2 <- biv_sum$r.squared
+annotation_label <- sprintf("Linear Slope: \u03b2 = %+.3f (SE = %.3f)\nt = %.2f, p %s\nR\u00b2 = %.3f",
+                             biv_beta, biv_se, biv_t,
+                             if (biv_p < 0.0001) "< 0.0001" else sprintf("= %.4f", biv_p),
+                             biv_r2)
+y_annot_pos <- max(ego_covars$mean_alpha, na.rm = TRUE) * 0.95
+
 # Panel A: Regression of Decay Exponent on Negative Emotionality
 p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
   geom_point(aes(color = neuroticism), size = 2.4, alpha = 0.65) +
   geom_smooth(method = "lm", color = "#b2182b", fill = "#fddbc7", linewidth = 1.1) +
   scale_color_viridis_c(option = "magma", direction = -1, name = "Negative Emotionality:",
                         guide = guide_colorbar(barwidth = 10, barheight = 0.6)) +
-  annotate("label", x = 1.5, y = 1.85, hjust = 0, size = 3.3,
-           label = "Linear Slope: \u03b2 = +0.098 (SE = 0.019)\nt = 5.08, p < 0.0001\nR\u00b2 = 0.112",
+  annotate("label", x = min(ego_covars$neuroticism, na.rm = TRUE), y = y_annot_pos, hjust = 0, vjust = 1, size = 3.3,
+           label = annotation_label,
            fill = "white", color = "grey20") +
   labs(
     title = "(A) Exponent vs. Negative Emotionality",
@@ -351,16 +367,19 @@ p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, 
   labs(
     title = "(B) Signatures for High vs. Low Extremes",
     x = "Alter Rank (1\u201310)",
-    y = "Proportion of Outgoing Calls"
+    y = "Proportion of Outgoing Communication"
   ) +
   theme_nethealth() +
   theme(legend.position = "bottom",
         legend.margin = margin(t = 4, b = 2))
 
+subtitle_text <- sprintf("Higher Negative Emotionality predicts significantly steeper power-law decay (bivariate \u03b2 = %.3f, p %s); group-mean rank curves (panel B) overlap closely near the top ranks, indicating the association is diffuse across the full decay curve rather than concentrated at Rank 1-2",
+                          biv_beta, if (biv_p < 0.0001) "< 0.0001" else sprintf("= %.4f", biv_p))
+
 p7_combined <- (p7a | p7b) +
   plot_annotation(
     title = "Negative Emotionality as a Driver of Egocentric Relational Concentration",
-    subtitle = "Higher Negative Emotionality predicts significantly steeper power-law decay (\u03b2 = 0.098, p < 0.0001) and greater allocation to primary alters",
+    subtitle = str_wrap(subtitle_text, width = 110),
     theme = theme(
       plot.title = element_text(face = "bold", size = 13),
       plot.subtitle = element_text(color = "grey30", size = 11, margin = margin(b = 6))

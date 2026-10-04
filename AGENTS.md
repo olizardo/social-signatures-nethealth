@@ -989,19 +989,23 @@ project/
 - **Collaborative Google Doc URL:** https://docs.google.com/document/d/1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o
 - **Collaborative Google Doc ID:** `1CAVM2L25colX4ok5fdewBGo1-wWk-NzhX9esQ2nBU_o`
 - **Data Sources:** NetHealth Study (University of Notre Dame, continuous smartphone sensing and longitudinal surveys, 2015–2017: https://sites.nd.edu/nethealth/).
-- **Sample Size Architecture & Analytical Funnel:**
-  - *Full Digital Sensing Pool:* $N = 491$ unique egos, 498,237 outgoing iOS voice calls spanning June 30, 2015 through July 2, 2017 (reported in Abstract and Section 3.1).
-  - *Timescale Compliance Filtering ($\ge 2$ alters, $> 10$ calls per window):*
-    - Academic Years ($W = 2$): $N = 388$ eligible egos.
-    - Collegiate Semesters ($W = 4$): $N = 290$ eligible egos (**Core Analytical Cohort** for all longitudinal, dyadic, and psychological modeling).
-    - Academic Quarters ($W = 8$): $N = 227$ eligible egos.
-    - Calendar Months ($W = 24$): $N = 147$ eligible egos.
-    - Common Calendar Cohort: $N = 147$ egos (present across all four calendar definitions simultaneously).
-    - 3-Week Rolling Windows ($W = 102$): $N = 88$ eligible egos.
-    - 2-Week Discrete Windows ($W = 52$): $N = 65$ eligible egos.
-  - *Dyadic Call-to-Survey Linkage Sample (Table 4 & Figure 5):* $N = 13,174$ call-ranked dyadic observations across 283 unique egos matched to 8 waves of ego-network surveys ($35,913$ alter nominations; 7 egos in the 290 cohort had no survey alter nominations).
-  - *Complete-Case Dyadic Mixed-Effects Sample (Table 5 & Figure 6):* $N = 10,828$ dyad observations across $J = 280$ unique egos with complete data on subjective closeness, tie duration, cognitive salience, and trust (3 egos had survey item non-response).
-  - *Longitudinal Panel & Personality Models (Tables 6 & 7):* $N = 290$ egos (870 semester-to-semester transitions) with complete baseline Big Five psychometrics and estimated decay parameters.
+- **Sample Size Architecture & Analytical Funnel (2026 Multichannel Revision):** As of October 2026, the analytic pipeline was redone using the FULL pooled communication-events corpus (voice calls, SMS, MMS, and WhatsApp messages combined as equal-weight units of communication effort) rather than the voice-calls-only extract used previously, because calls represent only 2.3% of all communication events logged in NetHealth (vs. 97.7% for text-based channels: 87.2% SMS, 7.3% WhatsApp, 3.2% MMS). The full raw extract (`CommEvents(2-28-20)`, $N = 60,486,564$ events, all egos/types) was downloaded directly from the NetHealth Data page (https://sites.nd.edu/nethealth/data-2/, Communication Events .csv) and cached locally as `data/raw/CommEvents_full_2015_2019.csv.gz`. NetHealth-recommended data-quality exclusions are applied before pooling: zero-duration calls, zero-length SMS/WhatsApp, zero-bytes MMS/WhatsApp (missing values retained), and WhatsApp group chats (`eventtypedetail == "GC"`).
+  - *Full Digital Sensing Pool:* $N = 515$ unique egos, 15,609,345 pooled outgoing communication events (iPhone-only, all 4 channels) spanning June 30, 2015 through July 2, 2017 (reported in Abstract and Section 3).
+  - *Timescale Compliance Filtering ($\ge 2$ alters, $> 10$ pooled events per window):*
+    - Academic Years ($W = 2$): $N = 405$ eligible egos.
+    - Collegiate Semesters ($W = 4$): $N = 307$ eligible egos (**Core Analytical Cohort** for all longitudinal, dyadic, and psychological modeling).
+    - Academic Quarters ($W = 8$): $N = 259$ eligible egos.
+    - Calendar Months ($W = 24$): $N = 208$ eligible egos.
+    - Common Calendar Cohort: $N = 208$ egos (present across all four calendar definitions simultaneously).
+    - 3-Week Rolling Windows ($W = 102$): $N = 187$ eligible egos.
+    - 2-Week Discrete Windows ($W = 52$): $N = 180$ eligible egos.
+    - 1-Week Discrete Windows ($W = 104$): $N = 121$ eligible egos.
+  - *Dyadic Communication-to-Survey Linkage Sample (Table 4 & Figure 5):* $N = 21,273$ communication-ranked dyadic observations across 300 unique egos matched to 8 waves of ego-network surveys ($35,913$ alter nominations).
+  - *Complete-Case Dyadic Mixed-Effects Sample (Table 4b/5 & Figure 5b):* $N = 16,496$ dyad-WINDOW observations (not collapsed to one row per dyad) across $J = 295$ unique egos with complete data on subjective closeness, tie duration, cognitive salience, and trust. Reconstructed in `Scripts/06b_tie_attribute_models.R` (this analysis previously existed only as ad hoc, unsaved code).
+  - *Longitudinal Panel & Personality Models (Tables 6 & 7):* $N = 307$ egos (921 semester-to-semester transitions) with complete baseline Big Five psychometrics and estimated decay parameters. CART tree reconstructed in `Scripts/06c_personality_cart.R` (also previously unsaved); its cross-validated error exceeds 1.0 at every split under pooled data, so it is reported as exploratory/descriptive only, not a validated predictive model.
+  - **Key substantive reversal**: Under pooled multichannel communication, Rank 1 (the primary signature slot) is majority **friend** (53.1%) rather than majority **family** (23.3%, which instead peaks at Ranks 2-3). This is the opposite compositional pattern from the voice-calls-only analysis (69.7% family at Rank 1) and should be described carefully as a consequence of texting's high volume diluting the lower-volume, higher-investment kin-dominated calling channel — see the manuscript's Limitations section on equal channel-weighting.
+  - **Known pending follow-up**: The abstract is currently ~294 words, exceeding the Scientific Reports 200-word limit discussed in an earlier (unfinished) formatting pass; that pass's other to-dos (numbered citations, 8-display-item cap, Methods-at-end ordering, Discussion without subheadings) also remain unapplied as of this revision.
+  - **Per-Channel Robustness Supplement**: `Scripts/08_channel_robustness.R` recomputes the headline persistence, power-law scaling, and Rank-1 compositional results separately for Calls-Only ($N=285$ eligible egos), Texts-Only/SMS+MMS+WhatsApp ($N=283$), and Pooled ($N=307$), using identical semester-window eligibility and quality filters. Output: `output/tables/table_S1_channel_robustness.csv` and `data/processed/channel_robustness.rds`. Finding: persistence is channel-invariant ($p<0.0001$ in all three), but composition/curvature are not — Calls-Only reproduces the old kinship-dominated, power-law-preferred profile (72.1% family at Rank 1, 96.6% PL preference), Texts-Only is friend-dominated with a steeper, weaker-PL-preference profile (19.5% family, 38.2% PL preference, $\alpha=1.94$), and Pooled tracks Texts-Only almost exactly since text volume dominates. This table lives in `supplementary.tex` (standalone Supplementary Information document, compiles independently via `pdflatex supplementary.tex`; defines its own `\dself`/`\dref` macros mirroring `manuscript.tex`) as Supplementary Table S1, cited from the main text's Limitations section.
 
 ### 2. Theoretical Lineage & Empirical Grounding (Literature Review Synthesis)
 The project synthesizes and advances a decade of multidisciplinary research building on the social signatures framework coined by \citet{saramaeki2014persistence}:
