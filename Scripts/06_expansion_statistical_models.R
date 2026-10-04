@@ -5,7 +5,6 @@
 # Description: Implements substantive expansions:
 #              - Dyadic analysis linking signature rank tiers to survey support dimensions
 #              - Multilevel mixed-effects models predicting signature self-divergence
-#              - Cross-sectional models linking personality (Big 5) to signature shape (alpha)
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -17,14 +16,12 @@ suppressPackageStartupMessages({
 
 cat(">>> Step 6: Loading processed datasets for expansion modeling...\n")
 stopifnot(file.exists("data/processed/social_signatures_and_jsd.rds"))
-stopifnot(file.exists("data/processed/parametric_models.rds"))
 stopifnot(file.exists("data/processed/alter_survey_attributes.rds"))
 stopifnot(file.exists("data/processed/egonet_topology_by_wave.rds"))
 stopifnot(file.exists("data/processed/ego_psychometrics_longitudinal.rds"))
 stopifnot(file.exists("data/processed/turnover_and_divergence.rds"))
 
 sig_data   <- readRDS("data/processed/social_signatures_and_jsd.rds")
-param_data <- readRDS("data/processed/parametric_models.rds")
 alter_attr <- readRDS("data/processed/alter_survey_attributes.rds")
 egonet_top <- readRDS("data/processed/egonet_topology_by_wave.rds")
 ego_psych  <- readRDS("data/processed/ego_psychometrics_longitudinal.rds")
@@ -182,52 +179,13 @@ print(table04)
 write_csv(table04, "output/tables/table04_multilevel_regression_results.csv")
 cat("Saved multilevel regression results to output/tables/table04_multilevel_regression_results.csv\n")
 
-# ==============================================================================
-# 3. Personality Determinants of Social Signature Shape (Power-Law Alpha)
-# ==============================================================================
-cat("\nEstimating models linking Big Five Personality to Signature Alpha (Steepness)...\n")
-sem_models <- param_data$semester_models
-
-# Ego average power-law alpha
-ego_param_mean <- sem_models %>%
-  group_by(egoid) %>%
-  summarise(
-    mean_alpha = mean(pl_alpha, na.rm = TRUE),
-    mean_alters = mean(k_alters, na.rm = TRUE),
-    mean_pl_r2 = mean(pl_r2, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  left_join(ego_psych_w1, by = "egoid") %>%
-  left_join(ego_topo_mean, by = "egoid") %>%
-  filter(!is.na(mean_alpha) & !is.na(extraversion))
-
-# OLS Regression: Alpha ~ Big 5
-m_alpha <- lm(mean_alpha ~ extraversion + neuroticism + agreeableness + conscientiousness + openness + egonet_deg,
-              data = ego_param_mean)
-
-table05 <- tidy(m_alpha) %>%
-  mutate(
-    stars = case_when(
-      p.value < 0.001 ~ "***",
-      p.value < 0.01  ~ "**",
-      p.value < 0.05  ~ "*",
-      TRUE ~ ""
-    )
-  )
-
-print(table05)
-write_csv(table05, "output/tables/table05_personality_signature_models.csv")
-cat("Saved personality determinant models to output/tables/table05_personality_signature_models.csv\n")
-
 # Save model objects
 saveRDS(list(
   dyad_merged = dyad_merged,
   tier_summary = tier_summary,
   model1_turnover = m1,
   model2_topology = m2,
-  model3_integrated = m3,
-  model_alpha_personality = m_alpha,
-  ego_param_covariates = ego_param_mean
+  model3_integrated = m3
 ), "data/processed/expansion_models.rds")
 
 cat("\n>>> Step 6 completed successfully! Saved to data/processed/expansion_models.rds\n")

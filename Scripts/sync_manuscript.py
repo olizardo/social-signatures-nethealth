@@ -162,9 +162,6 @@ def main():
     h5, r5 = parse_markdown_table("cache/table5_multilevel_models.md")
     if h5 and r5: tables["{{TABLE_5}}"] = create_apa_table_xml(h5, r5, [3660, 1900, 1900, 1900])
     
-    h6, r6 = parse_markdown_table("cache/table6_personality_models.md")
-    if h6 and r6: tables["{{TABLE_6}}"] = create_apa_table_xml(h6, r6, [3360, 1500, 1500, 1500, 1500])
-    
     # 2. Add figures to relationships and media
     figures = {
         "{{FIGURE_1}}": "Plots/fig01_mean_signatures_by_window.png",
@@ -172,8 +169,7 @@ def main():
         "{{FIGURE_3}}": "Plots/fig03_power_law_vs_exponential.png",
         "{{FIGURE_4}}": "Plots/fig04_parameter_burnin.png",
         "{{FIGURE_5}}": "Plots/fig05_rank_by_support_tiers.png",
-        "{{FIGURE_6}}": "Plots/fig06_turnover_vs_stability.png",
-        "{{FIGURE_7}}": "Plots/fig07_personality_signature_effects.png"
+        "{{FIGURE_6}}": "Plots/fig06_turnover_vs_stability.png"
     }
     
     # Parse rels

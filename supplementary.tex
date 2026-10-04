@@ -210,40 +210,4 @@ Ego Groups & 307 & 307 & 307 \\
 }
 \end{table}
 
-\clearpage
-\section*{Supplementary Table S6: Personality Determinants of Signature Shape}
-
-Table~\ref{tab:supp_personality} reports the full OLS regression of ego-mean power-law decay exponents on Big Five personality traits, underlying the summary reported in main text Section~5.4.
-
-\begin{table}[htbp]
-\centering
-\caption{Personality Determinants of Social Signature Power-Law Alpha ($\alpha_i$)}
-\label{tab:supp_personality}
-\small
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Term} & \textbf{Estimate} & \textbf{Std.\ Error} & \textbf{$t$ value} & \textbf{$p$-value} \\
-\midrule
-(Intercept) & $1.973^{***}$ & 0.194 & 10.17 & $< 0.0001$ \\
-Extraversion & $-0.026$ & 0.021 & $-1.22$ & 0.224 \\
-Negative Emotionality & $0.076^{**}$ & 0.024 & 3.19 & 0.0016 \\
-Agreeableness & $-0.014$ & 0.031 & $-0.44$ & 0.659 \\
-Conscientiousness & $-0.003$ & 0.028 & $-0.09$ & 0.927 \\
-Openness & $-0.034$ & 0.034 & $-1.01$ & 0.314 \\
-Personal Network Degree & $0.0001$ & 0.003 & 0.04 & 0.969 \\
-\midrule
-\multicolumn{5}{l}{\footnotesize $N = 304$ egos, $R^2 = 0.058, F(6, 297) = 3.05, p = 0.0065$.}
-\end{tabular}
-\end{table}
-
-\clearpage
-\section*{Supplementary Figure S3: CART Decision Tree}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.95\textwidth]{Plots/fig08_cart_decision_tree.png}
-\caption{Classification and Regression Tree (CART) Predicting Social Signature Power-Law Alpha ($\alpha_i$) from Big Five Personality Traits ($N = 306$). Node boxes display predicted mean $\alpha_i$ (top) and sample size (bottom). Cross-validated error exceeds 1.0 at every split, indicating weak out-of-sample predictive value; the tree is reported as an exploratory, descriptive structure only. See main text Section~5.4.}
-\label{fig:supp_cart}
-\end{figure}
-
 \end{document}

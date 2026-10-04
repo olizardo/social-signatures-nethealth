@@ -110,31 +110,4 @@ writeLines(c(
   apply(t5_wide, 1, function(r) paste0("| ", paste(r, collapse = " | "), " |"))
 ), "cache/table5_multilevel_models.md")
 
-# Table 6: Personality Determinants of Alpha
-t6_raw <- read_csv("output/tables/table05_personality_signature_models.csv", show_col_types = FALSE)
-t6_md <- t6_raw %>%
-  mutate(
-    term_clean = case_when(
-      term == "(Intercept)" ~ "Intercept",
-      term == "extraversion" ~ "Extraversion",
-      term == "neuroticism" ~ "Negative Emotionality",
-      term == "agreeableness" ~ "Agreeableness",
-      term == "conscientiousness" ~ "Conscientiousness",
-      term == "openness" ~ "Openness",
-      term == "egonet_deg" ~ "Personal Network Degree",
-      TRUE ~ term
-    ),
-    Estimate = sprintf("%.3f%s", estimate, stars),
-    `Std. Error` = sprintf("(%.3f)", std.error),
-    `t value` = sprintf("%.2f", statistic),
-    `p-value` = ifelse(p.value < 0.001, "< 0.001", sprintf("%.4f", p.value))
-  ) %>%
-  select(Term = term_clean, Estimate, `Std. Error`, `t value`, `p-value`)
-
-writeLines(c(
-  "| Term | Estimate | Std. Error | t value | p-value |",
-  "|:-----|:--------:|:----------:|:-------:|:-------:|",
-  apply(t6_md, 1, function(r) paste0("| ", paste(r, collapse = " | "), " |"))
-), "cache/table6_personality_models.md")
-
 cat("Generated all markdown tables into cache/\n")

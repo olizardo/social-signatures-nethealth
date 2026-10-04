@@ -3,7 +3,7 @@
 # Script 07: Generate Publication Figures & Presentation Visualizations
 # Project: Social Signatures in NetHealth
 # Description: Produces replication figures (Chandler 2019 slides) and expansion
-#              figures (support tiers, turnover dynamics, personality effects).
+#              figures (support tiers, turnover dynamics).
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -284,109 +284,4 @@ p6 <- ggplot(sem_turnover, aes(x = turnover, y = self_jsd)) +
 ggsave("output/plots/fig06_turnover_vs_stability.png", p6, width = 8.5, height = 5.2, dpi = 300)
 ggsave("Plots/fig06_turnover_vs_stability.png", p6, width = 8.5, height = 5.2, dpi = 300)
 
-# ------------------------------------------------------------------------------
-# Figure 7: Personality & Signature Steepness (Expansion 3)
-# ------------------------------------------------------------------------------
-cat("Generating Figure 7: Personality Predictors of Signature Alpha...\n")
-ego_covars <- expansion_d$ego_param_covariates %>%
-  filter(!is.na(neuroticism), !is.na(mean_alpha))
-
-# Bivariate fit (dynamically computed, not hardcoded) for the Panel A annotation
-biv_fit <- lm(mean_alpha ~ neuroticism, data = ego_covars)
-biv_sum <- summary(biv_fit)
-biv_beta <- coef(biv_fit)[2]; biv_se <- biv_sum$coefficients[2, 2]
-biv_t <- biv_sum$coefficients[2, 3]; biv_p <- biv_sum$coefficients[2, 4]
-biv_r2 <- biv_sum$r.squared
-annotation_label <- sprintf("Linear Slope: \u03b2 = %+.3f (SE = %.3f)\nt = %.2f, p %s\nR\u00b2 = %.3f",
-                             biv_beta, biv_se, biv_t,
-                             if (biv_p < 0.0001) "< 0.0001" else sprintf("= %.4f", biv_p),
-                             biv_r2)
-y_annot_pos <- max(ego_covars$mean_alpha, na.rm = TRUE) * 0.95
-
-# Panel A: Regression of Decay Exponent on Negative Emotionality
-p7a <- ggplot(ego_covars, aes(x = neuroticism, y = mean_alpha)) +
-  geom_point(aes(color = neuroticism), size = 2.4, alpha = 0.65) +
-  geom_smooth(method = "lm", color = "#b2182b", fill = "#fddbc7", linewidth = 1.1) +
-  scale_color_viridis_c(option = "magma", direction = -1, name = "Negative Emotionality:",
-                        guide = guide_colorbar(barwidth = 10, barheight = 0.6)) +
-  annotate("label", x = min(ego_covars$neuroticism, na.rm = TRUE), y = y_annot_pos, hjust = 0, vjust = 1, size = 3.3,
-           label = annotation_label,
-           fill = "white", color = "grey20") +
-  labs(
-    title = "(A) Exponent vs. Negative Emotionality",
-    x = "Baseline Negative Emotionality Score (Big Five)",
-    y = "Mean Power-Law Decay Exponent (\u03b1)"
-  ) +
-  theme_nethealth()
-
-# Panel B: Signatures by Negative Emotionality Extremes (High vs Low)
-ego_covars <- ego_covars %>%
-  mutate(
-    neuro_tertile = ntile(neuroticism, 3),
-    neuro_group = factor(neuro_tertile, levels = c(1, 3),
-                         labels = c("Low Negative Emotionality (T1)", "High Negative Emotionality (T3)"))
-  )
-
-sem_sigs <- sig_data$semester$sig_dt
-sem_merged <- merge(sem_sigs, ego_covars[!is.na(ego_covars$neuro_group), c("egoid", "neuro_group")], by = "egoid")
-
-rows <- list()
-for (i in 1:nrow(sem_merged)) {
-  p <- sem_merged$signature[[i]]
-  k <- min(length(p), 10)
-  rows[[length(rows) + 1]] <- tibble(
-    egoid = sem_merged$egoid[i],
-    neuro_group = sem_merged$neuro_group[i],
-    rank = 1:k,
-    proportion = p[1:k]
-  )
-}
-df_neuro_ranks <- bind_rows(rows) %>%
-  group_by(neuro_group, rank) %>%
-  summarise(
-    mean_prop = mean(proportion),
-    se_prop = sd(proportion) / sqrt(n()),
-    .groups = "drop"
-  )
-
-p7b <- ggplot(df_neuro_ranks, aes(x = rank, y = mean_prop, color = neuro_group, fill = neuro_group)) +
-  geom_ribbon(aes(ymin = mean_prop - 1.96 * se_prop, ymax = mean_prop + 1.96 * se_prop),
-              alpha = 0.15, color = NA) +
-  geom_line(linewidth = 1.1) +
-  geom_point(size = 2.4) +
-  scale_x_continuous(breaks = 1:10) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_color_manual(values = c("Low Negative Emotionality (T1)" = "#2166ac",
-                                "High Negative Emotionality (T3)" = "#b2182b"),
-                     name = "Negative Emotionality:") +
-  scale_fill_manual(values = c("Low Negative Emotionality (T1)" = "#2166ac",
-                               "High Negative Emotionality (T3)" = "#b2182b"),
-                    name = "Negative Emotionality:") +
-  guides(color = guide_legend(nrow = 1, byrow = TRUE), 
-         fill  = guide_legend(nrow = 1, byrow = TRUE)) +
-  labs(
-    title = "(B) Signatures for High vs. Low Extremes",
-    x = "Alter Rank (1\u201310)",
-    y = "Proportion of Outgoing Communication"
-  ) +
-  theme_nethealth() +
-  theme(legend.position = "bottom",
-        legend.margin = margin(t = 4, b = 2))
-
-subtitle_text <- sprintf("Higher Negative Emotionality predicts significantly steeper power-law decay (bivariate \u03b2 = %.3f, p %s); group-mean rank curves (panel B) overlap closely near the top ranks, indicating the association is diffuse across the full decay curve rather than concentrated at Rank 1-2",
-                          biv_beta, if (biv_p < 0.0001) "< 0.0001" else sprintf("= %.4f", biv_p))
-
-p7_combined <- (p7a | p7b) +
-  plot_annotation(
-    title = "Negative Emotionality as a Driver of Egocentric Relational Concentration",
-    subtitle = str_wrap(subtitle_text, width = 110),
-    theme = theme(
-      plot.title = element_text(face = "bold", size = 13),
-      plot.subtitle = element_text(color = "grey30", size = 11, margin = margin(b = 6))
-    )
-  )
-
-ggsave("output/plots/fig07_personality_signature_effects.png", p7_combined, width = 9.5, height = 5.2, dpi = 300)
-ggsave("Plots/fig07_personality_signature_effects.png", p7_combined, width = 9.5, height = 5.2, dpi = 300)
-
-cat("\n>>> Step 7 completed successfully! All 7 figures saved to output/plots/\n")
+cat("\n>>> Step 7 completed successfully! All 6 figures saved to output/plots/\n")
