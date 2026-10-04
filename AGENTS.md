@@ -981,7 +981,8 @@ project/
 ### 1. Overview & Document Identification
 - **Project Title:** Examining the Relational Content and Personal Determinants of Social Signatures Across Multiple Time Scales (Working Subtitle: *The Persistent Architecture of Relational Investment: Social Signatures in the NetHealth Study*)
 - **Authors:** Omar Lizardo (Department of Sociology, University of California, Los Angeles) and David Hachen (Department of Sociology, University of Notre Dame)
-- **Primary Publication Manuscript:** `manuscript.tex` (Synchronized directly with Overleaf and GitHub)
+- **Primary Publication Manuscript:** `manuscript.tex` (Synchronized directly with Overleaf and GitHub; target venue is **Scientific Reports**)
+- **Archived Manuscript Version:** `archive/NHB_manuscript.tex` — an earlier variant formatted for submission to *Nature Human Behaviour* (title page/superscript-affiliation style, numbered `natbib` citations). Archived 2026-10-04 once `manuscript.tex`/Scientific Reports was confirmed as the active submission target. Treat it as historical reference only: do not sync it with Overleaf, do not apply style/content edits intended for `manuscript.tex` to it, and do not resurrect it as an active file without explicit instruction.
 - **Bibliography:** `references.bib` (BibTeX database integrated via `natbib`)
 - **Overleaf Project URL:** https://www.overleaf.com/project/6aa09a088d46d1a81ec5e22c
 - **Overleaf Git Endpoint:** `https://git.overleaf.com/6aa09a088d46d1a81ec5e22c`
@@ -1073,11 +1074,13 @@ Any manuscript revision, grant submission, or documentation referencing the NetH
 ### 6. Directory Structure & Asset Taxonomy
 ```
 social-signatures-nethealth/
-├── manuscript.tex                         # Primary LaTeX manuscript (synchronized with Overleaf)
+├── manuscript.tex                         # Primary LaTeX manuscript (synchronized with Overleaf; Scientific Reports submission)
 ├── references.bib                         # BibTeX reference library (36 verified entries)
 ├── manuscript.pdf                         # Compiled 23-page publication PDF
 ├── draft_manuscript.md                    # Local Markdown mirror synchronized with Google Drive
 ├── run_all.R                              # Master analytical reproduction pipeline
+├── archive/
+│   └── NHB_manuscript.tex                 # ARCHIVED: earlier Nature Human Behaviour-formatted variant; historical reference only, not synced
 ├── data/
 │   ├── raw/                               # Call logs, calendars, and survey microdata (.gitignored raw files)
 │   └── processed/                         # Harmonized analytical datasets
