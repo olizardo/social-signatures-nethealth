@@ -1,0 +1,64 @@
+#!/bin/sh
+# ==============================================================================
+# Pre-commit hook: Social Signatures in NetHealth
+#
+# Guards the cache/manuscript staleness chain:
+#   output/tables/*.csv -> cache/*.md -> manuscript.tex / supplementary.tex
+#
+# Only runs (and only blocks the commit) when the staged changes touch a file
+# that could plausibly introduce drift: the pipeline scripts, the output
+# tables, the cache files themselves, or the manuscript/supplementary .tex
+# files. Unrelated commits (e.g. editing AGENTS.md or a plot) skip the checks
+# entirely so this stays fast.
+#
+# This repo is NOT configured to use .git/hooks/ directly (that directory is
+# untracked local state and would not travel with a fresh clone). Instead,
+# this tracked copy is wired in via:
+#   git config core.hooksPath Scripts/git-hooks
+# Run that command once per clone to activate it. Bypass in an emergency with
+# `git commit --no-verify`.
+# ==============================================================================
+
+changed=$(git diff --cached --name-only)
+
+relevant=$(printf '%s\n' "$changed" | grep -E '^(manuscript\.tex|supplementary\.tex|cache/.*\.md|output/tables/.*\.csv|Scripts/.*\.R)$')
+
+if [ -z "$relevant" ]; then
+  exit 0
+fi
+
+echo "pre-commit: staleness-relevant files changed, running cache/manuscript audit..."
+echo "$relevant" | sed 's/^/  - /'
+echo ""
+
+# check_cache_staleness.R is an exact diff (pipeline CSV -> cache/*.md) and
+# has shown zero false positives, so it is a hard gate: a mismatch here means
+# a cache file was hand-edited or not regenerated after a pipeline change.
+Rscript Scripts/check_cache_staleness.R
+cache_status=$?
+
+# check_manuscript_numbers.R is a heuristic substring search (cache/*.md ->
+# manuscript.tex/supplementary.tex) and can legitimately flag values that
+# prose rounds differently or simply doesn't restate -- see its own report
+# for the caveat. It is advisory only: printed for review, but it does not
+# block the commit on its own.
+Rscript Scripts/check_manuscript_numbers.R
+manuscript_status=$?
+
+if [ $cache_status -ne 0 ]; then
+  echo ""
+  echo "pre-commit: cache staleness check FAILED (see report above)."
+  echo "Re-run Rscript Scripts/generate_md_tables.R, then re-stage and commit again."
+  echo "To bypass in an emergency: git commit --no-verify"
+  exit 1
+fi
+
+if [ $manuscript_status -ne 0 ]; then
+  echo ""
+  echo "pre-commit: manuscript number cross-check flagged possible drift (see report"
+  echo "above). This is advisory and does NOT block the commit -- review the flagged"
+  echo "value(s) and update manuscript.tex / supplementary.tex if they are genuine."
+fi
+
+echo "pre-commit: cache/ is in sync with the pipeline."
+exit 0

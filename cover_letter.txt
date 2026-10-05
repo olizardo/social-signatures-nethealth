@@ -1,0 +1,36 @@
+Omar Lizardo
+Department of Sociology
+University of California, Los Angeles
+Los Angeles, CA, USA
+olizardo@soc.ucla.edu
+
+October 4, 2026
+
+The Editors
+Scientific Reports
+
+Re: Submission of "Examining the Relational Content and Personal Determinants of Social Signatures Across Multiple Time Scales"
+
+Dear Editors,
+
+We are pleased to submit our manuscript, "Examining the Relational Content and Personal Determinants of Social Signatures Across Multiple Time Scales," for consideration as an Article in Scientific Reports. The manuscript is co-authored by David Hachen (Department of Sociology, University of Notre Dame) and myself.
+
+A decade of research on "social signatures" -- the stable, individual-specific way people allocate finite communication effort across their personal contacts -- has shown that this allocation profile is both highly skewed and persistent over time, even as the specific people occupying each rank slot turn over. This literature, however, has reached an empirical impasse on four fronts: it has relied almost exclusively on communication metadata stripped of any relational content, so it is unclear what a person's top-ranked contact actually represents substantively (kin, romantic partner, friend) or psychologically; it has hypothesized but never directly tested the "slot-filling" mechanism by which signatures stay stable despite contact turnover; it has examined isolated, arbitrarily chosen observation windows rather than a systematic hierarchy of timescales, leaving the question of how long a person must be observed before their signature parameters stabilize entirely open; and it has modeled communication in isolation from the surrounding social network structure in which it is embedded.
+
+Our study addresses all four gaps using the NetHealth dataset, a longitudinal study of an undergraduate cohort at the University of Notre Dame that combines continuous passive smartphone sensing of outgoing communication (voice calls, SMS, MMS, and WhatsApp messages pooled into a single measure of communication effort across 515 egos and over 15.6 million events) with eight waves of ego-network surveys recording relationship type, closeness, trust, and social support, and with longitudinal Big Five personality batteries. This combination of continuous behavioral data, repeated relational surveys, and psychometric measurement on the same individuals over time is, to our knowledge, unique among studies of social signatures, and it lets us link communication rank directly to what that rank means relationally and psychologically rather than treating it as a purely behavioral artifact.
+
+Substantively, we show that communication signatures are stable across every one of eight temporal resolutions we examine, from single weeks to full academic years; that signature rank corresponds to systematic, content-based divisions in kinship status and social support rather than simply reflecting contact frequency; that the slot-filling mechanism holds even when a person's single most-contacted alter is completely replaced between semesters; that signature decay parameters require roughly nine to ten months of continuous observation to stabilize; and that structural network turnover, rather than the clustering of one's surrounding peer group, is the primary driver of signature change over time. Together these findings move the social signatures literature from a purely descriptive, metadata-driven phenomenon toward an empirically grounded account of its relational content, its underlying cognitive mechanism, and its temporal and structural boundary conditions.
+
+We believe this work is well suited to Scientific Reports given the journal's commitment to rigorous, broadly accessible empirical research spanning the social and behavioral sciences and its readership across network science, computational social science, and psychology. The findings should be of interest to researchers studying personal networks, human communication behavior, computational social science methodology, and the cognitive constraints on relational maintenance across the life course.
+
+This manuscript is original, has not been published previously, and is not under consideration elsewhere. Both authors have approved the submission and have no competing interests to declare. We believe this work will be of broad interest to the journal's readership and look forward to your consideration.
+
+Thank you for your time and consideration.
+
+Sincerely,
+
+Omar Lizardo
+Department of Sociology, University of California, Los Angeles
+
+David Hachen
+Department of Sociology, University of Notre Dame
